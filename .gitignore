@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+
+# environment — .env.example is the only env file that is committed
+.env
+.env.*
+!.env.example
+
+# platform
+.vercel/
+.lighthouseci/
+
+# generated share cards (rebuilt by `npm run og`)
+public/og/*.png
+
+# OS + editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json

@@ -50,12 +50,17 @@ const year = new Date().getFullYear();
             <a
               class="icon-btn"
               href={s.href}
-              aria-label={s.label}
               {...(s.href.startsWith('https://')
                 ? { target: '_blank', rel: 'noopener noreferrer' }
                 : {})}
             >
-              <img src={`/icons/${s.icon}.svg`} alt="" width="24" height="24" loading="lazy" />
+              <img
+                src={`/icons/${s.icon}.svg`}
+                alt={s.label}
+                width="24"
+                height="24"
+                loading="lazy"
+              />
             </a>
           ))
         }

@@ -13,7 +13,29 @@ interface Props {
 const { project, next } = Astro.props;
 const p = project.data;
 
-const description = `${p.tagline} ${p.service} for ${p.client}, ${p.year}.`.slice(0, 155);
+/**
+ * Meta descriptions are kept between 120 and 155 characters. The tagline plus
+ * the service line usually lands in range; short ones are topped up with the
+ * scope, then with a fixed tail, and anything long is cut at a word boundary.
+ */
+const parts = [
+  `${p.tagline}`,
+  `${p.service} for ${p.client}, ${p.year}.`,
+  `${p.scope}.`,
+  'A case study by Senya, UI/UX designer in Accra.',
+];
+
+let description = '';
+for (const part of parts) {
+  if (description.length >= 120) break;
+  description = description ? `${description} ${part}` : part;
+}
+if (description.length > 155) {
+  description = description
+    .slice(0, 155)
+    .replace(/s+S*$/, '')
+    .replace(/[,;:—-]$/, '');
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',

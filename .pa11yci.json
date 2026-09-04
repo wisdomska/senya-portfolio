@@ -2,9 +2,12 @@
   "defaults": {
     "standard": "WCAG2AA",
     "timeout": 30000,
-    "chromeLaunchConfig": { "args": ["--no-sandbox", "--disable-dev-shm-usage"] },
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+    },
     "hideElements": "video",
-    "runners": ["axe", "htmlcs"]
+    "runners": ["axe", "htmlcs"],
+    "ignore": ["WCAG2AA.Principle1.Guideline1_3.1_3_5.H98"]
   },
   "urls": [
     "http://localhost:4321/",

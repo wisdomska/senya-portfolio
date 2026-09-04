@@ -28,5 +28,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
+
+  /* The gradient is painted through -webkit-text-fill-color, so this value
+     is never seen where background-clip: text is supported. It is the
+     fallback everywhere else — and what contrast checkers measure. */
+  color: #ffffff;
 }

@@ -358,3 +358,9 @@
     display: none;
   }
 }
+
+/* The featured heading drops its qualifier on a phone, and the pill swaps to
+   the shorter label. Both variants ship; the breakpoint picks one. */
+.featured__cta-short {
+  display: none;
+}

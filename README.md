@@ -433,6 +433,28 @@ Lighthouse budgets are asserted and will fail the build:
 
 ---
 
+## The one colour that changed
+
+Every value in `src/styles/tokens.css` is the export's, unchanged, with one
+exception.
+
+`#6f6f6f` measures **3.76:1** against the `#111111` ground. WCAG AA needs 4.5:1
+for text under 24px, and the export used it for two 14px items: the location
+line inside an open career row, and the form field placeholders. Both now use
+`#7d7d7d` (**4.59:1**), which the design already uses for the meta labels
+sitting beside them, so no new colour was introduced.
+
+To put it back, change `.role__loc` in
+`src/styles/components/accordion.css` and the `::placeholder` rule in
+`src/styles/components/form.css`. The accessibility check in CI will then fail,
+which is the point of it.
+
+Separately, the gradient-filled headings used to declare `color: transparent`.
+That renders them **invisible** in any engine without `background-clip: text`,
+and leaves contrast checkers nothing to measure. They now declare the
+gradient's own light stop instead. Where the gradient works this changes no
+pixel, because `-webkit-text-fill-color` paints over it.
+
 ## Pointing a custom domain at the site
 
 `https://wisdomska.vercel.app` is canonical today. This is the whole procedure

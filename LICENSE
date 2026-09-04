@@ -1,0 +1,53 @@
+MIT License
+
+Copyright (c) 2026 Wisdom Senya Agbetsiafa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+
+WHAT THIS LICENCE DOES AND DOES NOT COVER
+
+The MIT licence above applies ONLY to the source code of this website: the
+Astro components, layouts, stylesheets, client scripts, build scripts and
+configuration.
+
+It does NOT cover, and no permission is granted to reuse, reproduce or
+redistribute:
+
+  * The visual design, layout, type treatment and colour system of the site.
+  * All written content, including case-study text, the biography, career
+    history and credentials.
+  * All imagery: project covers and screenshots, the portrait photography,
+    the SENYA wordmark and brand mark, and the generated share cards.
+  * The curriculum vitae in public/docs/.
+  * The project work depicted in the case studies, which in several cases
+    belongs to the client named in that case study.
+
+These remain (c) 2026 Wisdom Senya Agbetsiafa, all rights reserved.
+
+THIRD-PARTY ASSETS
+
+  * Neue Haas Grotesk Display Pro and Digital Cards are commercial typefaces
+    licensed to the site owner. The subset WOFF2 files in public/fonts/ are
+    included so the site can serve them; they are not licensed for reuse and
+    are not covered by the MIT grant above.
+  * Tool logos in public/tools/ and country flags in public/flags/ are the
+    trademarks and public-domain flag artwork of their respective owners, used
+    for identification only.

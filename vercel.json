@@ -50,6 +50,16 @@
       "source": "/work",
       "destination": "/projects",
       "permanent": true
+    },
+    {
+      "source": "/Case%20Study.dc.html",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/Case%20Study.dc",
+      "destination": "/projects",
+      "permanent": true
     }
   ],
   "headers": [

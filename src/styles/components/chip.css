@@ -1,0 +1,63 @@
+/* Filter chips on the Projects page, and the small pill labels reused
+   elsewhere (card status, hero greeting, skill chips). */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  line-height: 1;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line-strong);
+  background: rgba(0, 0, 0, 0);
+  color: var(--c-text);
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  min-height: var(--tap-min);
+  transition:
+    background var(--t-slow) ease,
+    color var(--t-slow) ease,
+    border-color var(--t-slow) ease;
+}
+
+.chip:hover {
+  border-color: var(--c-line-hover);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--c-text);
+  color: var(--c-bg);
+}
+
+/* Status pill floating over a project cover. */
+.status-pill {
+  position: absolute;
+  top: 1.4cqw;
+  left: 1.7cqw;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65cqw;
+  padding: 12px 16px;
+  line-height: 1;
+  border-radius: var(--r-pill);
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--c-text);
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 0.1cqw rgba(206, 206, 206, 0.6),
+    0 0.28cqw 0.55cqw rgba(0, 0, 0, 0.3);
+}
+
+.status-pill__dot {
+  width: 0.55cqw;
+  height: 0.55cqw;
+  border-radius: 50%;
+  background: var(--c-text);
+  flex: 0 0 auto;
+}

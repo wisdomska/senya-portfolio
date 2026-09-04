@@ -1,0 +1,26 @@
+---
+import { ALL_FILTER } from '../data/projects';
+
+interface Props {
+  /** Derived from the content, never hardcoded. See src/data/projects.ts. */
+  filters: string[];
+}
+const { filters } = Astro.props;
+---
+
+<ul class="projects__filters" data-filters>
+  {
+    filters.map((filter) => (
+      <li>
+        <button
+          class="chip"
+          type="button"
+          data-filter={filter}
+          aria-pressed={filter === ALL_FILTER ? 'true' : 'false'}
+        >
+          {filter}
+        </button>
+      </li>
+    ))
+  }
+</ul>

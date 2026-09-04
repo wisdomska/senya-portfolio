@@ -1,0 +1,33 @@
+---
+/**
+ * The page-title band shared by Projects, Contact and 404: the hero loop
+ * behind a vignette, with the title and a one-line subtitle bottom-left.
+ */
+interface Props {
+  title: string;
+  subtitle: string;
+}
+const { title, subtitle } = Astro.props;
+---
+
+<section class="page-hero">
+  <video
+    class="hero__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="none"
+    disableremoteplayback
+    aria-hidden="true"
+    tabindex="-1"
+    data-hero-video
+    data-rate="0.25"
+    data-src="/hero.mp4"></video>
+  <div class="hero__vignette"></div>
+
+  <div class="page-hero__content">
+    <h1 class="page-hero__title">{title}</h1>
+    <p class="page-hero__sub">{subtitle}</p>
+  </div>
+</section>

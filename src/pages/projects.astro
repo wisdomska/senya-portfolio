@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import FilterChips from '../components/FilterChips.astro';
+import { getProjects, getFilters } from '../data/projects';
+import { SITE_NAME } from '../data/site';
+
+const projects = await getProjects();
+const filters = await getFilters();
+---
+
+<BaseLayout
+  title={`Projects — ${SITE_NAME}`}
+  description="Thirteen UI/UX, website and graphic design case studies by Senya — mobile apps, admin dashboards, marketing sites and self-initiated lab work."
+  ogImage="/og/projects.png"
+>
+  <PageHero title="PROJECTS" subtitle="Some handpicked projects I've worked on over the years :)" />
+
+  <section class="band projects" aria-label="All projects">
+    <FilterChips filters={filters} />
+
+    <div class="work-grid" data-work-grid>
+      {projects.map((project, i) => <ProjectCard project={project} eager={i < 2} />)}
+    </div>
+
+    <p class="projects__empty" data-empty hidden>No projects match that filter yet.</p>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../scripts/hero-video';
+  import '../scripts/filters';
+</script>

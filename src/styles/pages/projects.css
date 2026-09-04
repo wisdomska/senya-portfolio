@@ -1,0 +1,76 @@
+/* Shared page-title band (Projects and Contact), plus the projects grid. */
+
+.page-hero {
+  position: relative;
+  width: 100%;
+  height: 34.72cqw;
+  min-height: 380px;
+  overflow: hidden;
+  background: var(--c-bg);
+  container-type: inline-size;
+  font-family: var(--font-sans);
+}
+
+.page-hero__content {
+  position: absolute;
+  left: 5.56cqw;
+  bottom: 5.9cqw;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.page-hero__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(20px, 10.1cqw, 145.4px);
+  line-height: 0.86;
+  letter-spacing: -0.025em;
+  width: fit-content;
+  background: linear-gradient(90deg, #777777 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.page-hero__sub {
+  margin: 1.1cqw 0 0 0;
+  color: #b4b4b4;
+  font-size: clamp(16px, 1.25cqw, 18px);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* --- Projects grid --- */
+.projects {
+  padding: 1.7cqw var(--page-pad-x-right) 6.5cqw var(--page-pad-x);
+  box-sizing: border-box;
+}
+
+.projects__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7cqw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projects .work-grid {
+  margin-top: 2.4cqw;
+}
+
+/* Shown only when a filter matches nothing. */
+.projects__empty {
+  margin-top: 2.4cqw;
+  color: var(--c-text-dimmer);
+  font-size: var(--fs-body);
+}
+
+.projects__empty[hidden] {
+  display: none;
+}

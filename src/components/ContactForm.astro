@@ -8,6 +8,10 @@ import { OWNER_EMAIL, SITE_NAME } from '../data/site';
  * it can be rotated without editing markup, not because it is secret.
  */
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+
+// Until a key is set, the submit handler hands the message to the visitor's
+// mail client instead of posting it. Setting PUBLIC_WEB3FORMS_KEY in Vercel
+// switches the form to a real inbox delivery with no code change.
 ---
 
 <form
@@ -17,6 +21,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
   novalidate
   data-contact-form
   data-fallback-email={OWNER_EMAIL}
+  data-configured={accessKey ? 'true' : 'false'}
 >
   <input type="hidden" name="access_key" value={accessKey} />
   <input type="hidden" name="subject" value={`New enquiry from ${SITE_NAME}`} />

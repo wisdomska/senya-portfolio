@@ -15,6 +15,7 @@ if (form) {
   const phoneE164 = form.querySelector<HTMLInputElement>('[data-phone-e164]')!;
   const phoneLocal = form.querySelector<HTMLInputElement>('#cf-phone')!;
   const fallbackEmail = form.dataset.fallbackEmail ?? '';
+  const isConfigured = form.dataset.configured === 'true';
 
   /* ---------------------------------------------------------------- timing */
 
@@ -177,6 +178,26 @@ if (form) {
     }
 
     phoneE164.value = toE164();
+
+    // No Web3Forms key set yet: hand the message to the visitor's mail client
+    // rather than posting it and failing. Set PUBLIC_WEB3FORMS_KEY to switch
+    // to inbox delivery — nothing else changes.
+    if (!isConfigured) {
+      const name = (document.getElementById('cf-name') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('cf-email') as HTMLInputElement).value.trim();
+      const message = (document.getElementById('cf-message') as HTMLTextAreaElement).value.trim();
+      const phone = phoneE164.value;
+      const body = [`Name: ${name}`, `Email: ${email}`, phone && `Phone: ${phone}`, '', message]
+        .filter(Boolean)
+        .join('\n');
+      window.location.href =
+        `mailto:${fallbackEmail}?subject=` +
+        encodeURIComponent(`Portfolio enquiry from ${name}`) +
+        '&body=' +
+        encodeURIComponent(body);
+      setStatus('Opening your mail app…', 'pending');
+      return;
+    }
 
     submit.disabled = true;
     submitLabel.textContent = 'Sending…';

@@ -83,10 +83,10 @@
 
   /* --- Radii ------------------------------------------------------------- */
   --r-pill: 999px;
-  --r-card: 1.55cqw;
-  --r-panel: 1.7cqw;
-  --r-field: 0.9cqw;
-  --r-field-sm: 0.62cqw;
+  --r-card: clamp(14px, 1.55cqw, 23px);
+  --r-panel: clamp(16px, 1.7cqw, 25px);
+  --r-field: clamp(12px, 0.9cqw, 13px);
+  --r-field-sm: clamp(9px, 0.62cqw, 9px);
   --r-nav: 0 0 0 25px;
   --r-nav-inner: 0 0 0 23px;
   --r-cta: 13px 0 0 13px;

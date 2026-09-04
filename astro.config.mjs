@@ -71,5 +71,30 @@ export default defineConfig({
     },
   },
 
+  vite: {
+    css: {
+      /**
+       * Vite processes CSS with Lightning CSS, which rewrites vendor prefixes
+       * to suit its targets. With none configured it kept
+       * -webkit-backdrop-filter and dropped the standard backdrop-filter
+       * outright — and Firefox only supports the unprefixed property, so every
+       * glass panel in the site rendered completely flat there.
+       *
+       * Naming the targets keeps both declarations. Versions are encoded as
+       * major << 16, which is Lightning CSS's format.
+       */
+      transformer: 'lightningcss',
+      lightningcss: {
+        targets: {
+          chrome: 107 << 16,
+          edge: 107 << 16,
+          firefox: 104 << 16,
+          safari: 16 << 16,
+          ios_saf: 16 << 16,
+        },
+      },
+    },
+  },
+
   devToolbar: { enabled: false },
 });

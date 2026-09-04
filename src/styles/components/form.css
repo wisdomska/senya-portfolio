@@ -172,8 +172,10 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--r-field);
   background: rgba(20, 20, 20, 0.97);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+
+  --glass: blur(10px);
+
+  backdrop-filter: var(--glass);
   box-shadow: 0 1cqw 2.4cqw rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }

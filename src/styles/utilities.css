@@ -36,3 +36,29 @@
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* -----------------------------------------------------------------------------
+   Safari's -webkit-backdrop-filter.
+
+   Written here rather than beside each rule on purpose. Lightning CSS treats
+   `backdrop-filter` and `-webkit-backdrop-filter` in the same block as
+   duplicates and keeps only the last one, which silently deleted the standard
+   property from the whole build — and Firefox supports only the standard
+   property, so every glass panel rendered flat there. Setting Lightning CSS
+   targets through vite.css.lightningcss or browserslist did not reach it.
+
+   In its own @supports rule there is nothing to collapse against, so both
+   spellings survive. Each selector supplies the blur through --glass, so the
+   value is still written once.
+   -------------------------------------------------------------------------- */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .status-pill,
+  .foot__card,
+  .phone__menu,
+  .nav__inner,
+  .hero__greeting,
+  .meet__tag,
+  .floater {
+    -webkit-backdrop-filter: var(--glass);
+  }
+}

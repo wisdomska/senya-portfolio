@@ -49,5 +49,12 @@
     "subset-font": "^2.7.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.69.0"
-  }
+  },
+  "browserslist": [
+    "chrome >= 107",
+    "edge >= 107",
+    "firefox >= 104",
+    "safari >= 16",
+    "ios_saf >= 16"
+  ]
 }

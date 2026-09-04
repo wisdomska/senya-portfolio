@@ -28,16 +28,17 @@ let pointerX = 0;
 
 function drift() {
   if (!statue || !footer) return;
-  // Desktop only — below 1024px the footer reflows and the drift would push
-  // the statue out of its container.
-  if (window.innerWidth <= 1024) {
-    statue.style.transform = '';
-    return;
-  }
+  // Below 1024px the footer stacks and the statue sits in flow, so the drift
+  // is scaled back to keep it inside its band. The pointer term is dropped
+  // there — there is no pointer on a touch screen.
+  const narrow = window.innerWidth <= 1024;
+  const scale = narrow ? 0.35 : 1;
+
   const r = footer.getBoundingClientRect();
   const vh = window.innerHeight || 1;
   const progress = (vh / 2 - (r.top + r.height / 2)) / (vh + r.height);
-  statue.style.transform = `translate3d(${(pointerX * 14).toFixed(2)}px, ${(progress * 90).toFixed(2)}px, 0)`;
+  const x = narrow ? 0 : pointerX * 14;
+  statue.style.transform = `translate3d(${x.toFixed(2)}px, ${(progress * 90 * scale).toFixed(2)}px, 0)`;
 }
 
 if (statue && !reduced) {

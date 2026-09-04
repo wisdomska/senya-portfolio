@@ -334,10 +334,139 @@ h3,
     width: 100%;
   }
 
+  /* Projects: the gap between the filter row and the grid is 2.4cqw, which
+     is 35px at 1440 but only 9px here — the chips ended up looking attached
+     to the first card. The chip gaps collapse the same way. */
+  .projects__filters {
+    gap: clamp(0.5rem, 2.5vw, 0.75rem);
+  }
+
+  .projects .work-grid,
+  .projects__empty {
+    margin-top: clamp(2rem, 8vw, 3rem);
+  }
+
   /* Case study inner grids. */
   .case__users,
   .case__features {
     grid-template-columns: 1fr;
+  }
+
+  /* Case study rhythm. Every gap on this page is authored in cqw against the
+     section, so on a narrow container they all collapse at once — 4.6cqw is
+     66px at 1440 but 18px at 390, which is what made the page feel clamped.
+     Below this width they are given real floors. */
+  .case-hero {
+    padding: clamp(5.5rem, 16vw, 8rem) var(--gutter) 0;
+  }
+
+  .case-body {
+    padding: clamp(2.5rem, 9vw, 4rem) var(--gutter) clamp(3rem, 11vw, 5rem);
+  }
+
+  .case__title {
+    margin-left: 0;
+  }
+
+  .case__tagline,
+  .case__meta {
+    margin-top: clamp(1.5rem, 6vw, 2.5rem);
+    max-width: none;
+  }
+
+  .case__intro {
+    gap: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .case__panel,
+  .case__solution-inner {
+    padding: clamp(1.4rem, 5.5vw, 2.25rem);
+  }
+
+  .case__rule {
+    margin-top: clamp(1.6rem, 6vw, 2.5rem);
+    padding-top: clamp(1.6rem, 6vw, 2.5rem);
+  }
+
+  .case__section,
+  .case__solution,
+  .case__results,
+  .case__learned {
+    margin-top: clamp(2.25rem, 9vw, 3.5rem);
+  }
+
+  .case__p,
+  .case__users,
+  .case__features,
+  .case__steps,
+  .case__decisions {
+    margin-top: clamp(0.9rem, 3.5vw, 1.4rem);
+  }
+
+  .case__users,
+  .case__features,
+  .case__decisions {
+    gap: clamp(0.7rem, 3vw, 1.1rem);
+  }
+
+  .case__user,
+  .case__feature {
+    padding: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  .case__user-text {
+    margin-top: clamp(0.8rem, 3.5vw, 1.2rem);
+  }
+
+  .case__decision {
+    gap: clamp(0.8rem, 3.5vw, 1.2rem);
+    padding: clamp(0.9rem, 3.5vw, 1.25rem) clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .case__result {
+    padding: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .case__result p {
+    margin-top: clamp(0.7rem, 3vw, 1.1rem);
+  }
+
+  .case__learned {
+    padding-left: clamp(1rem, 4.5vw, 1.6rem);
+  }
+
+  .case__learned-text {
+    margin-top: clamp(0.6rem, 2.5vw, 1rem);
+  }
+
+  .case__proto {
+    margin-top: clamp(2rem, 8vw, 3rem);
+  }
+
+  .case__next {
+    margin-top: clamp(3rem, 12vw, 4.5rem);
+    padding-top: clamp(1.75rem, 7vw, 2.5rem);
+    gap: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .case__next-link {
+    gap: 0.75rem;
+  }
+
+  /* Form fields: the horizontal padding is authored in cqw and collapses to
+     about 6px on a phone, against roughly 19px above and below. These match
+     them up. */
+  .field__input,
+  .phone__search {
+    padding: 0 1.15rem;
+  }
+
+  .field__textarea {
+    padding: 1.15rem;
+  }
+
+  .phone__cc {
+    padding: 0 0.85rem;
   }
 }
 
@@ -345,6 +474,17 @@ h3,
 @media (max-width: 640px) {
   .cert {
     flex-basis: 100%;
+  }
+
+  /* Display headings wrap rather than run off the edge. */
+  .section-heading,
+  .page-hero__title,
+  .case__title,
+  .contact__heading {
+    white-space: normal;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    text-wrap: balance;
   }
 
   .case__meta-cell {
@@ -357,33 +497,44 @@ h3,
     stroke-width: 3;
   }
 
-  /* Primary and secondary pills go full width. */
-  .btn {
+  /* Primary and secondary pills go full width, so a lone call to action is
+     easy to hit. The two navigation pills on a case study are excluded: they
+     read as controls, not as the page's action. */
+  .btn:not(.case__back) {
     width: 100%;
   }
 
   .featured__cta-frame,
-  .case__all {
+  .featured__cta {
     width: 100%;
   }
 
-  .featured__cta {
-    width: 100%;
+  /* Back, top left of the case study. */
+  .case__back {
+    width: fit-content;
+    align-self: flex-start;
+    margin-right: auto;
+    padding: 0 24px;
+  }
+
+  /* All Projects, bottom right of the case study. */
+  .case__all {
+    width: fit-content;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+
+  .case__all .btn {
+    width: fit-content;
+    padding: 0 24px;
   }
 }
 
 /* ---------- <=480px : phone ---------- */
 @media (max-width: 480px) {
-  .foot__statue {
-    width: 70%;
-    opacity: 0.38;
-  }
-
-  .foot__mark {
-    width: 128%;
-    max-width: none;
-    margin-left: -14%;
-  }
+  /* The footer is deliberately identical to the tablet layout here: the
+     statue keeps the same width and is fully opaque, and the wordmark is not
+     blown past the viewport. */
 
   .case__meta-cell {
     padding: 1rem 0.75rem;

@@ -231,9 +231,6 @@ h3,
     right: auto;
     bottom: auto;
     margin: -6vw auto 0;
-
-    /* The pointer parallax is disabled below this width by the script. */
-    transform: none;
   }
 
   .foot__card {
@@ -292,16 +289,18 @@ h3,
 
 /* ---------- <=834px : tablet portrait ---------- */
 @media (max-width: 834px) {
+  /* One column, so the cards need real air between them or they read as a
+     single strip. */
   .work-grid {
     grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 6vw, 3rem);
+    gap: clamp(2.75rem, 11vw, 4rem);
   }
 
   /* Career rows fully stack. */
   .role__head {
     grid-template-columns: 1fr auto;
-    gap: 0.75rem;
-    padding: 1.25rem 1rem;
+    gap: 0.5rem 0.75rem;
+    padding: clamp(1.1rem, 4.5vw, 1.6rem) clamp(1rem, 4vw, 1.5rem);
   }
 
   .role__range {
@@ -311,11 +310,12 @@ h3,
 
   .role__body {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
-    padding: 0 1rem 1.5rem;
+    gap: clamp(0.9rem, 4vw, 1.4rem);
+    padding: 0 clamp(1rem, 4vw, 1.5rem) clamp(1.6rem, 6.5vw, 2.4rem);
   }
 
   .role__detail {
+    gap: clamp(0.85rem, 3.5vw, 1.2rem);
     max-width: none;
   }
 
@@ -467,6 +467,117 @@ h3,
 
   .phone__cc {
     padding: 0 0.85rem;
+  }
+
+  /* ---- Section rhythm -------------------------------------------------- */
+
+  /* Band padding is 9.58cqw / 8cqw, which is 138px / 115px at 1440 but only
+     37px / 31px here, so every section ran into the next. */
+  .featured,
+  .career,
+  .credentials,
+  .projects,
+  .contact__inner {
+    padding-top: clamp(3.5rem, 14vw, 6rem);
+    padding-bottom: clamp(3.5rem, 14vw, 6rem);
+  }
+
+  .featured .work-grid,
+  .career__panel,
+  .carousel__viewport {
+    margin-top: clamp(2rem, 8vw, 3rem);
+  }
+
+  /* ---- Project cards --------------------------------------------------- */
+
+  /* The card type is floored at 20px, which is nearly the body size here and
+     made every title wrap. Stepped down so a card reads as a caption again. */
+  .card__title {
+    font-size: clamp(16px, 4.4vw, 19px);
+    line-height: 1.25;
+  }
+
+  .card__year {
+    font-size: clamp(13px, 3.4vw, 15px);
+  }
+
+  .card__discipline {
+    margin-top: 0.4rem;
+    font-size: clamp(13px, 3.6vw, 15px);
+  }
+
+  .card__meta {
+    margin-top: 0.9rem;
+    gap: 0.75rem;
+  }
+
+  .status-pill {
+    top: 0.85rem;
+    left: 0.85rem;
+    gap: 0.45rem;
+    padding: 9px 13px;
+    font-size: 14px;
+  }
+
+  .status-pill__dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  /* ---- Career, expanded ------------------------------------------------ */
+
+  .role__ident {
+    gap: 0.3rem;
+  }
+
+  .role__one {
+    margin-bottom: 0.15rem;
+  }
+
+  .role__owned {
+    gap: 0.65rem;
+    align-items: flex-start;
+  }
+
+  .role__owned-dot {
+    margin-top: 0.55rem;
+  }
+
+  .role__prog {
+    margin-top: 0.35rem;
+    padding-left: 0.9rem;
+  }
+
+  .role__skills {
+    margin-top: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .role__skill {
+    padding: 7px 12px;
+    font-size: 15px;
+  }
+
+  /* ---- Credentials ----------------------------------------------------- */
+
+  .cert__inner {
+    gap: 0.65rem;
+    padding: clamp(1.1rem, 4.5vw, 1.6rem);
+  }
+
+  .carousel__track {
+    gap: clamp(0.85rem, 3.5vw, 1.25rem);
+  }
+
+  .cert {
+    flex-basis: 100%;
+  }
+
+  /* ---- Meet Senya ------------------------------------------------------ */
+
+  .meet__bio {
+    gap: clamp(0.9rem, 4vw, 1.4rem);
+    font-size: clamp(16px, 4.3vw, 19px);
   }
 }
 

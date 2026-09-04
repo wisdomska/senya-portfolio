@@ -9,21 +9,6 @@ export type Project = CollectionEntry<'projects'>;
  */
 const HIDDEN_FILTERS = new Set(['Graphic Design']);
 
-/**
- * Preferred chip order. Any derived label not listed here is appended
- * alphabetically, so adding a new category to a case study can never
- * silently drop its chip.
- */
-const FILTER_ORDER = [
-  'UI/UX Design',
-  'Website Design',
-  'Graphic Design',
-  'Website Development',
-  'Lab',
-  'Designed',
-  'Designed & Developed',
-];
-
 export const ALL_FILTER = 'All Projects';
 
 /** All case studies, in the order they appear on the Projects grid. */
@@ -48,11 +33,12 @@ export async function getFilters(): Promise<string[]> {
     for (const t of p.data.tags) present.add(t);
   }
 
-  const visible = [...present].filter((f) => !HIDDEN_FILTERS.has(f));
-  const known = FILTER_ORDER.filter((f) => visible.includes(f));
-  const extra = visible.filter((f) => !FILTER_ORDER.includes(f)).sort();
+  // Alphabetical, with the reset chip pinned to the front.
+  const visible = [...present]
+    .filter((f) => !HIDDEN_FILTERS.has(f))
+    .sort((a, b) => a.localeCompare(b, 'en'));
 
-  return [ALL_FILTER, ...known, ...extra];
+  return [ALL_FILTER, ...visible];
 }
 
 /** Labels a card must carry so the client-side filter can match it. */

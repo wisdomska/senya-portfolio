@@ -49,7 +49,7 @@
 }
 
 .marquee__logo {
-  height: 2.5cqw;
+  height: clamp(26px, 2.5cqw, 40px);
   width: auto;
   display: block;
   flex: 0 0 auto;

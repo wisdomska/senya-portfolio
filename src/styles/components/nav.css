@@ -52,8 +52,10 @@
   /* Frosted glass only reads if enough of the backdrop survives. At 0.55 the
      hero's dot field was still almost entirely masked out. */
   background: rgba(17, 17, 17, 0.34);
-  backdrop-filter: blur(22px) saturate(160%) brightness(1.35);
-  -webkit-backdrop-filter: blur(22px) saturate(160%) brightness(1.35);
+
+  --glass: blur(22px) saturate(160%) brightness(1.35);
+
+  backdrop-filter: var(--glass);
   border-radius: var(--r-nav-inner);
   padding: 20px 22px;
   overflow: hidden;

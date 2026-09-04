@@ -46,18 +46,21 @@ if (chips.length && !reduced) {
 
   function apply() {
     queued = false;
-    // Below 1024px the section reflows and the chips would drift off-canvas.
-    if (window.innerWidth <= 1024) {
-      for (const chip of chips) chip.style.transform = '';
-      return;
-    }
+
+    // Below 1024px the chips are pinned to the portrait rather than to the
+    // section, so the full desktop amplitude would carry them off it. The
+    // drift is kept — just scaled back — and the pointer term is dropped,
+    // since there is no pointer to follow on a touch screen.
+    const narrow = window.innerWidth <= 1024;
+    const scale = narrow ? 0.3 : 1;
+
     const rect = meet!.getBoundingClientRect();
     const vh = window.innerHeight || 1;
     const progress = (vh / 2 - (rect.top + rect.height / 2)) / (vh + rect.height);
 
     chips.forEach((chip, i) => {
-      const y = progress * yFactor[i % 4];
-      const x = pointerX * xFactor[i % 4];
+      const y = progress * yFactor[i % 4] * scale;
+      const x = narrow ? 0 : pointerX * xFactor[i % 4];
       chip.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
     });
   }

@@ -49,10 +49,10 @@
     rgba(255, 255, 255, 0.06) 45%,
     rgba(255, 255, 255, 0.13) 100%
   );
-  --shadow-control: inset 0 1px 2px rgba(255, 255, 255, 0.28),
-    inset 0 -1px 2.5px rgba(0, 0, 0, 0.45);
-  --shadow-control-hover: inset 0 1px 2.2px rgba(255, 255, 255, 0.34),
-    inset 0 -1px 2.5px rgba(0, 0, 0, 0.45);
+  --shadow-control:
+    inset 0 1px 2px rgba(255, 255, 255, 0.28), inset 0 -1px 2.5px rgba(0, 0, 0, 0.45);
+  --shadow-control-hover:
+    inset 0 1px 2.2px rgba(255, 255, 255, 0.34), inset 0 -1px 2.5px rgba(0, 0, 0, 0.45);
 
   /* Hairline gradient borders are painted with a masked ::before. */
   --mask-hairline: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -63,8 +63,8 @@
   --c-line-hover: rgba(255, 255, 255, 0.4);
 
   /* --- Type -------------------------------------------------------------- */
-  --font-sans: NHD, 'NHD Fallback', Helvetica, Arial, sans-serif;
-  --font-display: DigitalCards, NHD, 'NHD Fallback', sans-serif;
+  --font-sans: nhd, 'NHD Fallback', helvetica, arial, sans-serif;
+  --font-display: digitalcards, nhd, 'NHD Fallback', sans-serif;
 
   /* Fluid steps. Each clamp() is exactly as authored in the export; the
      container-relative middle term is what makes the design scale. */

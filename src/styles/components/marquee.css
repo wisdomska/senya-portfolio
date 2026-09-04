@@ -4,6 +4,7 @@
   from {
     transform: translate3d(0, 0, 0);
   }
+
   to {
     transform: translate3d(-50%, 0, 0);
   }
@@ -53,6 +54,7 @@
   display: block;
   flex: 0 0 auto;
   max-width: none;
+
   /* Counter-rotates the band so each logo sits level. */
   transform: rotate(-3.4deg);
 }

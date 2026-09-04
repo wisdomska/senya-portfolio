@@ -36,6 +36,7 @@
   background: var(--c-surface-input);
   color: var(--c-text);
   font-family: var(--font-sans);
+
   /* Fields are a fixed 56px / 16px at every width. The export authored them
      in cqw, then pinned them in its responsive layer; 56/16 is what actually
      rendered. 16px is also the floor that stops iOS Safari zooming on focus. */
@@ -114,6 +115,7 @@
   border-radius: var(--r-field);
   background: var(--c-surface-input);
   color: var(--c-text);
+
   /* Not a form control in the export, so it kept the fluid step rather than
      being pinned to 16px like the real inputs. */
   font-size: var(--fs-field);

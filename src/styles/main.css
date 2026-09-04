@@ -6,7 +6,6 @@
 @import url('./reset.css') layer(reset);
 @import url('./base.css') layer(base);
 @import url('./layout.css') layer(layout);
-
 @import url('./components/wordmark.css') layer(components);
 @import url('./components/nav.css') layer(components);
 @import url('./components/footer.css') layer(components);
@@ -18,12 +17,10 @@
 @import url('./components/carousel.css') layer(components);
 @import url('./components/meta-strip.css') layer(components);
 @import url('./components/form.css') layer(components);
-
 @import url('./pages/home.css') layer(pages);
 @import url('./pages/projects.css') layer(pages);
 @import url('./pages/contact.css') layer(pages);
 @import url('./pages/case-study.css') layer(pages);
 @import url('./pages/not-found.css') layer(pages);
-
 @import url('./utilities.css') layer(utilities);
 @import url('./responsive.css') layer(utilities);

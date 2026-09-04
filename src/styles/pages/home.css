@@ -19,6 +19,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
   /* The loop is filmed upside down; 1.2 scale hides the rotation seam. */
   transform: rotate(180deg) scale(1.2);
   pointer-events: none;
@@ -208,14 +209,17 @@
   left: 10.97cqw;
   top: 23.9cqw;
 }
+
 .meet__tag--2 {
   left: 32.6cqw;
   top: 32.4cqw;
 }
+
 .meet__tag--3 {
   left: 7.78cqw;
   top: 43.8cqw;
 }
+
 .meet__tag--4 {
   left: 32.5cqw;
   top: 50.5cqw;
@@ -343,6 +347,7 @@
   [data-floater-trigger] {
     cursor: auto;
   }
+
   .floater {
     display: none;
   }

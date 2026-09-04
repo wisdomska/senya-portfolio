@@ -83,3 +83,6 @@ if (chips.length && !reduced) {
 
   apply();
 }
+
+// Marks this file as a module so its top-level names stay local.
+export {};

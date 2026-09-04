@@ -111,10 +111,7 @@ if (form) {
       for (const option of options) {
         const { name = '', dial: d = '', code = '' } = option.dataset;
         const match =
-          !q ||
-          name.toLowerCase().includes(q) ||
-          d.replace('+', '').includes(q) ||
-          code === q;
+          !q || name.toLowerCase().includes(q) || d.replace('+', '').includes(q) || code === q;
         option.parentElement!.hidden = !match;
         if (match) shown++;
       }

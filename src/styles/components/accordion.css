@@ -5,7 +5,14 @@
   border-radius: 2cqw;
   padding: 2cqw;
   box-sizing: border-box;
-  background: linear-gradient(145deg, #232323 0%, #141414 30%, #0b0b0b 55%, #171717 80%, #202020 100%);
+  background: linear-gradient(
+    145deg,
+    #232323 0%,
+    #141414 30%,
+    #0b0b0b 55%,
+    #171717 80%,
+    #202020 100%
+  );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -134,16 +141,20 @@
 .role__head[aria-expanded='true'] .role__range {
   color: var(--c-text);
 }
+
 .role__head[aria-expanded='true'] .role__knob svg {
   transform: rotate(180deg);
 }
+
 .role__head[aria-expanded='true'] ~ .role__reveal {
   grid-template-rows: 1fr;
 }
+
 .role__head[aria-expanded='true'] ~ .role__reveal .role__body {
   opacity: 1;
   transform: translateY(0);
 }
+
 .role:has(.role__head[aria-expanded='true']) .role__bar {
   transform: scaleY(1);
 }

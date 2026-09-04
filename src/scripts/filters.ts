@@ -31,3 +31,6 @@ if (chips.length && cards.length) {
     });
   }
 }
+
+// Marks this file as a module so its top-level names stay local.
+export {};

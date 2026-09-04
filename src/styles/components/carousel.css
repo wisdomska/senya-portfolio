@@ -4,7 +4,7 @@
 @property --cert-x {
   syntax: '<length>';
   inherits: true;
-  initial-value: 0px;
+  initial-value: 0;
 }
 
 :root {
@@ -71,7 +71,7 @@
   display: flex;
   gap: 1.6cqw;
   will-change: translate;
-  translate: var(--cert-x, 0px);
+  translate: var(--cert-x, 0);
 }
 
 .cert {
@@ -79,6 +79,7 @@
   min-width: 0;
   position: relative;
   border-radius: 1.1cqw;
+
   /* 1px top padding lets the gradient beneath read as a hairline. */
   padding: 1px 0 0 0;
   background: linear-gradient(90deg, #777777 0%, #ffffff 100%);
@@ -100,7 +101,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.9cqw;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       150deg,
       rgba(255, 255, 255, 0.045) 0%,
       rgba(255, 255, 255, 0.01) 55%,

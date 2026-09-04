@@ -177,16 +177,19 @@ h3,
     right: auto;
     top: 12.4%;
   }
+
   .meet__tag--2 {
     left: auto;
     right: 8%;
     top: 29%;
   }
+
   .meet__tag--3 {
     left: 5%;
     right: auto;
     top: 54%;
   }
+
   .meet__tag--4 {
     left: auto;
     right: 4%;
@@ -228,6 +231,7 @@ h3,
     right: auto;
     bottom: auto;
     margin: -6vw auto 0;
+
     /* The pointer parallax is disabled below this width by the script. */
     transform: none;
   }

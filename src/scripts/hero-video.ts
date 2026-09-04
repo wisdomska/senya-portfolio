@@ -12,6 +12,8 @@ const start = (video: HTMLVideoElement) => {
     video.src = video.dataset.src;
   }
   video.muted = true;
+  // Keeps a silent decorative loop out of AirPlay/Cast pickers.
+  video.disableRemotePlayback = true;
   const rate = Number(video.dataset.rate);
   if (rate) video.playbackRate = rate;
   // Autoplay can still be refused (low power mode); the vignette stands alone.
@@ -26,7 +28,6 @@ if (videos.length) {
     for (const video of videos) {
       if (video.dataset.src) {
         video.src = video.dataset.src;
-        video.removeAttribute('autoplay');
         video.loop = false;
       }
     }

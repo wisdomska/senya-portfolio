@@ -30,7 +30,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
        drops any submission where `botcheck` is filled. -->
   <div class="u-hidden" aria-hidden="true">
     <label for="botcheck">Leave this field empty</label>
-    <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off" />
+    <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" />
   </div>
 
   <div class="field">
@@ -132,7 +132,13 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
                     data-name={c.name}
                     data-dial={c.dial}
                   >
-                    <img src={`/flags/${c.code}.png`} alt="" width="22" height="17" loading="lazy" />
+                    <img
+                      src={`/flags/${c.code}.png`}
+                      alt=""
+                      width="22"
+                      height="17"
+                      loading="lazy"
+                    />
                     <span class="phone__option-name">{c.name}</span>
                     <span class="phone__option-dial">{c.dial}</span>
                   </button>
@@ -163,7 +169,14 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
   <div class="form__actions">
     <button class="btn btn--fill" type="submit" data-submit>
       <span data-submit-label>Send Message</span>
-      <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <svg
+        class="btn__icon"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        aria-hidden="true"
+      >
         <path
           d="M17.5 2.5 L9 11 M17.5 2.5 L12 17.5 L9 11 L2.5 8 Z"
           fill="#111111"

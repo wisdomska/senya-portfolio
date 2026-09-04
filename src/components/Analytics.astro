@@ -4,16 +4,23 @@
  *
  * Both are served from this origin by Vercel itself (/_vercel/...), so there
  * is no third-party request, no cookie, and nothing to consent to — and no npm
- * dependency either: the packages only inject these two tags.
+ * dependency either: the official packages only inject these two tags.
  *
- * Production only. VERCEL_ENV is "preview" on PR deploys and undefined
- * locally, so preview traffic and local dev never report.
+ * Two conditions, both required:
+ *
+ *  1. VERCEL_ENV === 'production'. Preview deploys and local development never
+ *     report, so the numbers stay clean.
+ *  2. ENABLE_ANALYTICS === '1'. The /_vercel/ endpoints only exist once the
+ *     features are switched on in the Vercel dashboard (Project → Analytics →
+ *     Enable, and Project → Speed Insights → Enable). Until then the scripts
+ *     would 404 and log a console error, so this flag keeps them out of the
+ *     page. Set it in the dashboard for Production after enabling both.
  */
-const isProduction = process.env.VERCEL_ENV === 'production';
+const enabled = process.env.VERCEL_ENV === 'production' && process.env.ENABLE_ANALYTICS === '1';
 ---
 
 {
-  isProduction && (
+  enabled && (
     <>
       <script defer src="/_vercel/insights/script.js" is:inline />
       <script defer src="/_vercel/speed-insights/script.js" is:inline />

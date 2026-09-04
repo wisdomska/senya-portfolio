@@ -1,23 +1,24 @@
 /* Contact form: fields, phone country selector, status region. */
 
 .form {
-  margin-top: 3.26cqw;
+  margin-top: clamp(1.75rem, 3.26cqw, 2.9rem);
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2.5cqw;
+  gap: clamp(1.6rem, 2.5cqw, 2.25rem);
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.83cqw;
+  gap: clamp(0.6rem, 0.83cqw, 0.75rem);
 }
 
 .field__label {
   color: var(--c-text-mid);
   font-size: var(--fs-label);
   letter-spacing: 0.03em;
+  line-height: 1.2;
 }
 
 .field__req {
@@ -97,7 +98,7 @@
 .form__row {
   display: flex;
   align-items: flex-start;
-  gap: 2.64cqw;
+  gap: clamp(1.25rem, 2.64cqw, 2.4rem);
 }
 
 .form__row > .field {
@@ -110,7 +111,7 @@
   position: relative;
   display: flex;
   align-items: stretch;
-  gap: 0.62cqw;
+  gap: clamp(0.5rem, 0.62cqw, 0.6rem);
 }
 
 .phone__cc {
@@ -265,7 +266,7 @@
 .form__actions {
   display: flex;
   align-items: center;
-  gap: 1.7cqw;
+  gap: clamp(0.9rem, 1.7cqw, 1.55rem);
   flex-wrap: wrap;
 }
 

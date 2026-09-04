@@ -13,20 +13,30 @@
 .marquee {
   position: relative;
   width: 100%;
+
+  /* The band is rotated, so the section has to clear its height plus the rise
+     across its width. 16.2cqw covers that at desktop but collapses to 63px on
+     a phone, which cropped the band to a sliver. */
   height: 16.2cqw;
-  min-height: 132px;
+  min-height: 180px;
   overflow: hidden;
   background: var(--c-bg);
   container-type: inline-size;
 }
 
 .marquee__band {
+  /* The logos sit at 30% of the band's height at every width. Without a floor
+     the band collapsed to 32px on a phone while the logos held at 26px, so
+     they filled it edge to edge with nothing around them. Deriving the
+     centring offset from the same value keeps the two in step. */
+  --band-h: clamp(88px, 8.33cqw, 120px);
+
   position: absolute;
   left: -22%;
   top: 50%;
   width: 144%;
-  height: 8.33cqw;
-  margin-top: -4.16cqw;
+  height: var(--band-h);
+  margin-top: calc(var(--band-h) / -2);
   background: linear-gradient(90deg, #191919 0%, #333333 100%);
   transform: rotate(3.4deg);
   display: flex;

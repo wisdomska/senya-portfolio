@@ -602,7 +602,8 @@ h3,
   }
 
   .section-heading {
-    line-height: 1.18;
+    line-height: 1.35;
+    text-wrap: wrap;
   }
 
   .page-hero__title {
@@ -632,7 +633,7 @@ h3,
      its own row and stays right-aligned there rather than overflowing. */
   .featured__head {
     flex-wrap: wrap;
-    gap: 1.25rem 1rem;
+    gap: 1.25rem 0.75rem;
   }
 
   .case__meta-cell {
@@ -659,7 +660,7 @@ h3,
 
   .featured__cta {
     width: fit-content;
-    padding: 0 22px;
+    padding: 0 18px;
   }
 
   /* Back, top left of the case study. */

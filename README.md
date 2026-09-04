@@ -400,7 +400,8 @@ feature branch  →  pull request  →  Vercel preview  →  merge to main  → 
 - `develop` is the long-running integration branch. Branch from it for work
   that is not ready to ship.
 - Every pull request gets its own Vercel preview URL, posted as a comment.
-  Open it and click through before merging.
+  Open it and click through before merging. This was verified on the first
+  pull request against this repository.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org):
   `feat:`, `fix:`, `perf:`, `docs:`, `chore:`, `ci:`.
 

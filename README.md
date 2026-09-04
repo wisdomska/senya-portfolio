@@ -356,6 +356,14 @@ in Vercel, under **Project → Settings → Environment Variables**.
 Get a Web3Forms key free at <https://web3forms.com> — enter the destination
 email and it is sent to you. No account needed.
 
+**Testing the form with an automated browser.** The free plan accepts requests
+only from a real browser, and it decides that from the user agent. A
+server-side POST is answered with `Use our API in client side`, and a request
+whose UA contains `HeadlessChrome` is rejected *with no CORS header at all* —
+so the browser reports nothing but `TypeError: Failed to fetch`. Set a normal
+Chrome user agent (`page.setUserAgent(...)` in Puppeteer) before submitting, or
+you will be debugging the harness rather than the site.
+
 **No secret of any kind belongs in this repo.** There is no server, no
 database, and no API key with write access to anything.
 

@@ -1,0 +1,93 @@
+/* Element defaults and the font programme. */
+
+@font-face {
+  font-family: NHD;
+  src: url('/fonts/nhd-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NHD;
+  src: url('/fonts/nhd-roman.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NHD;
+  src: url('/fonts/nhd-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NHD;
+  src: url('/fonts/nhd-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NHD;
+  src: url('/fonts/nhd-roman-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: NHD;
+  src: url('/fonts/nhd-medium-italic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: DigitalCards;
+  src: url('/fonts/digitalcards.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metric-matched fallback. The overrides are measured against NHD Roman by
+   `npm run fonts` (see scripts/subset-fonts.mjs), so swapping from Arial to
+   the real face does not reflow the page. */
+@font-face {
+  font-family: 'NHD Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 99.6%;
+  ascent-override: 82%;
+  descent-override: 18%;
+  line-gap-override: 0%;
+}
+
+html {
+  scroll-behavior: auto;
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+a:not([class]) {
+  color: var(--c-accent);
+}
+
+a:not([class]):hover {
+  color: var(--c-accent-link-hover);
+}
+
+/* The display face carries decorative ligatures that mangle short all-caps
+   labels; the export disabled them everywhere it was used. */
+.u-display {
+  font-family: var(--font-display);
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'clig' 0, 'dlig' 0;
+}

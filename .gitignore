@@ -25,3 +25,7 @@ desktop.ini
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Licensed font originals. The subset .woff2 files in public/fonts are
+# committed (they are what the site serves); the full desktop faces are not.
+src-fonts/

@@ -1,0 +1,33 @@
+/* Container, section rhythm, and the skip link. */
+
+/* Every full-width band establishes its own inline-size container. The design
+   sizes almost everything in cqw against these, which is what makes it scale
+   between 320px and 2560px without a breakpoint per step. */
+.band {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-bg);
+  container-type: inline-size;
+}
+
+.band--pad {
+  padding: 9.58cqw var(--page-pad-x-right) 8cqw var(--page-pad-x);
+  box-sizing: border-box;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: var(--z-skip);
+  padding: 12px 20px;
+  border-radius: 0 0 12px 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-size: var(--fs-nav);
+}
+
+.skip-link:focus {
+  left: 0;
+}

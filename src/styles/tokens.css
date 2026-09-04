@@ -1,0 +1,114 @@
+/* =============================================================================
+   Design tokens
+   Every value here was lifted verbatim from the Claude Design export. Nothing
+   was re-picked, rounded or harmonised — the names are new, the values are not.
+   ========================================================================== */
+
+:root {
+  /* --- Surfaces ---------------------------------------------------------- */
+  --c-bg: #111111;
+  --c-bg-hero: #0d0d0d;
+  --c-bg-footer: #0b0b0b;
+  --c-surface: #191919;
+  --c-surface-input: #1a1a1a;
+  --c-surface-raised: #232323;
+  --c-surface-control: #3d3d3d;
+  --c-surface-control-hover: #4a4a4a;
+
+  /* --- Text -------------------------------------------------------------- */
+  --c-text: #ffffff;
+  --c-text-strong: #f2f2f2;
+  --c-text-mid: #d8d8d8;
+  --c-text-muted: #b8b8b8;
+  --c-text-dim: #8f8f8f;
+  --c-text-dimmer: #8a8a8a;
+  --c-text-faint: #777777;
+
+  /* --- Brand ------------------------------------------------------------- */
+  --c-accent: #cb7ffe;
+  --c-accent-soft: #e6b4ff;
+  --c-accent-mid: #e0479f;
+  --c-accent-hot: #ff1043;
+  --c-accent-link-hover: #ff1e56;
+
+  /* The signature magenta -> purple sweep. Written out 28 times in the
+     export; defined once here. */
+  --grad-brand: linear-gradient(95deg, #cb7ffe 0%, #e0479f 55%, #ff1043 100%);
+  --grad-rule: linear-gradient(90deg, #e6b4ff 0%, #cb7ffe 100%);
+
+  /* Recurring glass/control treatments, verbatim from the export. */
+  --grad-control: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  --grad-control-hover: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(255, 255, 255, 0.13) 100%
+  );
+  --shadow-control: inset 0 1px 2px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 2.5px rgba(0, 0, 0, 0.45);
+  --shadow-control-hover: inset 0 1px 2.2px rgba(255, 255, 255, 0.34),
+    inset 0 -1px 2.5px rgba(0, 0, 0, 0.45);
+
+  /* Hairline gradient borders are painted with a masked ::before. */
+  --mask-hairline: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+
+  /* --- Lines ------------------------------------------------------------- */
+  --c-line: rgba(255, 255, 255, 0.1);
+  --c-line-strong: rgba(255, 255, 255, 0.16);
+  --c-line-hover: rgba(255, 255, 255, 0.4);
+
+  /* --- Type -------------------------------------------------------------- */
+  --font-sans: NHD, 'NHD Fallback', Helvetica, Arial, sans-serif;
+  --font-display: DigitalCards, NHD, 'NHD Fallback', sans-serif;
+
+  /* Fluid steps. Each clamp() is exactly as authored in the export; the
+     container-relative middle term is what makes the design scale. */
+  --fs-nav: 17px;
+  --fs-body: clamp(16px, 1.32cqw, 19px);
+  --fs-body-lg: clamp(20px, 1.9cqw, 27.4px);
+  --fs-card-title: clamp(20px, 2.01cqw, 28.9px);
+  --fs-label: clamp(16px, 1.11cqw, 16px);
+  --fs-field: clamp(16px, 1.25cqw, 18px);
+  --fs-next: clamp(20px, 2.15cqw, 31px);
+
+  /* --- Layout ------------------------------------------------------------ */
+  --gutter: clamp(1rem, 5vw, 5.76cqw);
+  --page-pad-x: 5.76cqw;
+  --page-pad-x-right: 5.42cqw;
+
+  /* --- Radii ------------------------------------------------------------- */
+  --r-pill: 999px;
+  --r-card: 1.55cqw;
+  --r-panel: 1.7cqw;
+  --r-field: 0.9cqw;
+  --r-field-sm: 0.62cqw;
+  --r-nav: 0 0 0 25px;
+  --r-nav-inner: 0 0 0 23px;
+  --r-cta: 13px 0 0 13px;
+
+  /* --- Controls ---------------------------------------------------------- */
+  --control-h: 54px;
+  --control-h-cta: 52px;
+  --field-h: 4.37cqw;
+  --tap-min: 44px;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 180ms;
+  --t-base: 240ms;
+  --t-slow: 320ms;
+  --t-image: 620ms;
+
+  /* --- Depth ------------------------------------------------------------- */
+  --z-base: 0;
+  --z-raised: 1;
+  --z-overlay: 2;
+  --z-nav: 50;
+  --z-cursor: 90;
+  --z-skip: 100;
+}

@@ -1,0 +1,419 @@
+/* =============================================================================
+   RESPONSIVE
+   Ported from the export's responsive layer, breakpoint for breakpoint.
+
+   Desktop (>=1440px) is the base and is left untouched. Most sizing already
+   uses cqw against full-width containers, so type and spacing scale fluidly on
+   their own; these rules handle the structural reflows that proportional
+   scaling cannot solve.
+
+   The export needed ~140 !important declarations per page to beat its inline
+   styles. Those styles are now real rules in earlier cascade layers, so this
+   layer wins on layer order alone and every !important has been removed.
+   ========================================================================== */
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* The hero lockup and ticker logos deliberately overflow their container. */
+.hero__outline svg,
+.marquee__logo {
+  max-width: none;
+}
+
+.hero__outline svg {
+  overflow: visible;
+}
+
+/* Fixed-size social controls: identical on desktop and mobile. */
+.foot__socials .icon-btn {
+  width: 60px;
+  height: 60px;
+}
+
+.foot__socials .icon-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+button,
+a[role='button'],
+.btn {
+  min-height: var(--tap-min);
+}
+
+.foot {
+  overflow: hidden;
+}
+
+/* Desktop: the stage is transparent, so portrait and chips position against
+   the section itself. */
+.meet__stage {
+  display: contents;
+}
+
+/* Long strings must never punch out of a card. */
+h1,
+h2,
+h3,
+.cert,
+.role {
+  overflow-wrap: anywhere;
+}
+
+/* Phone landscape: don't trap hero content off-screen. */
+@media (orientation: landscape) and (max-height: 480px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    padding: 92px 0 40px;
+  }
+
+  .hero__content {
+    position: static;
+    padding: 0 var(--gutter);
+  }
+}
+
+/* ---------- <=1280px : laptop ---------- */
+@media (max-width: 1280px) {
+  .cert {
+    flex-basis: calc((100% - 3.2cqw) / 3);
+  }
+}
+
+/* ---------- <=1024px : tablet landscape ---------- */
+@media (max-width: 1024px) {
+  .cert {
+    flex-basis: calc((100% - 1.6cqw) / 2);
+  }
+
+  /* Career rows: the engagement-type label drops out of its own column. */
+  .role__head {
+    grid-template-columns: 10cqw 1fr auto;
+  }
+
+  .role__type {
+    display: none;
+  }
+
+  /* Case study: side-by-side blocks stack. */
+  .case__intro,
+  .case__results {
+    grid-template-columns: 1fr;
+  }
+
+  .case__cover {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+  }
+
+  .case__cover img {
+    height: 100%;
+  }
+
+  .case__meta-row {
+    flex-wrap: wrap;
+  }
+
+  .case__meta-cell {
+    flex: 0 0 50%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .case__meta-cell:nth-child(odd)::before {
+    display: none;
+  }
+
+  .case__meta-cell:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  /* Meet Senya: the absolute composition becomes flow, and the chips stay
+     pinned to the portrait rather than to the section. */
+  .meet {
+    height: auto;
+    min-height: 0;
+    padding: clamp(3rem, 9vw, 8rem) var(--gutter);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .meet__heading {
+    position: static;
+    margin: 0 0 clamp(2rem, 7vw, 4rem);
+    align-self: flex-start;
+  }
+
+  .meet__stage {
+    display: block;
+    position: relative;
+    width: min(100%, 460px);
+    margin: 0 auto;
+  }
+
+  .meet__portrait {
+    position: static;
+    width: 74%;
+    margin: 0 auto;
+  }
+
+  .meet__tag {
+    position: absolute;
+    height: auto;
+    padding: 9px 14px;
+    font-size: clamp(12px, 3.2vw, 15px);
+  }
+
+  .meet__tag--1 {
+    left: 12%;
+    right: auto;
+    top: 12.4%;
+  }
+  .meet__tag--2 {
+    left: auto;
+    right: 8%;
+    top: 29%;
+  }
+  .meet__tag--3 {
+    left: 5%;
+    right: auto;
+    top: 54%;
+  }
+  .meet__tag--4 {
+    left: auto;
+    right: 4%;
+    top: 64.6%;
+  }
+
+  .meet__card {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-top: clamp(2rem, 8vw, 4rem);
+    padding: clamp(1.4rem, 5vw, 2.5rem);
+  }
+
+  /* Footer: wordmark, then statue, then a single centred card. */
+  .foot {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 clamp(1.5rem, 6vw, 3rem);
+  }
+
+  .foot__mark {
+    position: static;
+    order: 1;
+    width: 100%;
+    margin: clamp(1rem, 4vw, 2rem) 0 0;
+    left: auto;
+    top: auto;
+  }
+
+  .foot__statue {
+    position: static;
+    order: 2;
+    width: min(74%, 340px);
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: -6vw auto 0;
+    /* The pointer parallax is disabled below this width by the script. */
+    transform: none;
+  }
+
+  .foot__card {
+    position: static;
+    order: 3;
+    height: auto;
+    width: calc(100% - 2 * var(--gutter));
+    margin: -14vw var(--gutter) 0;
+    left: auto;
+    right: auto;
+    top: auto;
+    padding: clamp(2rem, 7vw, 3rem) clamp(1.25rem, 5vw, 2rem) clamp(1.25rem, 4vw, 2rem);
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 6vw, 2.5rem);
+    z-index: 5;
+  }
+
+  .foot__left {
+    max-width: none;
+    align-items: center;
+    text-align: center;
+  }
+
+  .foot__tagline {
+    text-align: center;
+  }
+
+  .foot__right {
+    width: 100%;
+    align-items: center;
+  }
+
+  .foot__link,
+  .foot__cv {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+    border-right: none;
+    background: none;
+    padding: 0.6rem 0;
+  }
+
+  .foot__cv {
+    width: 100%;
+    padding: 0;
+  }
+
+  .foot__copy {
+    position: static;
+    order: 4;
+    margin-top: clamp(1.25rem, 5vw, 2rem);
+  }
+}
+
+/* ---------- <=834px : tablet portrait ---------- */
+@media (max-width: 834px) {
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 6vw, 3rem);
+  }
+
+  /* Career rows fully stack. */
+  .role__head {
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .role__range {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .role__body {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0 1rem 1.5rem;
+  }
+
+  .role__detail {
+    max-width: none;
+  }
+
+  .foot__card {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Contact form: paired fields stack. */
+  .form__row {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form__row > .field {
+    width: 100%;
+  }
+
+  /* Case study inner grids. */
+  .case__users,
+  .case__features {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- <=640px : large phone ---------- */
+@media (max-width: 640px) {
+  .cert {
+    flex-basis: 100%;
+  }
+
+  .case__meta-cell {
+    flex: 0 0 50%;
+    min-width: 0;
+  }
+
+  /* Outlined type: keep hairlines readable at small sizes. */
+  .hero__outline text {
+    stroke-width: 3;
+  }
+
+  /* Primary and secondary pills go full width. */
+  .btn {
+    width: 100%;
+  }
+
+  .featured__cta-frame,
+  .case__all {
+    width: 100%;
+  }
+
+  .featured__cta {
+    width: 100%;
+  }
+}
+
+/* ---------- <=480px : phone ---------- */
+@media (max-width: 480px) {
+  .foot__statue {
+    width: 70%;
+    opacity: 0.38;
+  }
+
+  .foot__mark {
+    width: 128%;
+    max-width: none;
+    margin-left: -14%;
+  }
+
+  .case__meta-cell {
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* ---------- <=360px : small phone ---------- */
+@media (max-width: 360px) {
+  .role__head,
+  .role__body {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .case__meta-cell {
+    flex: 0 0 100%;
+    padding-left: 0;
+  }
+
+  .case__meta-cell::before {
+    display: none;
+  }
+}
+
+/* Touch devices: no sticky hover states. */
+@media (hover: none), (pointer: coarse) {
+  .cert:hover,
+  .role:hover {
+    transform: none;
+  }
+}
+
+/* Safe areas. */
+@supports (padding: max(0px)) {
+  .foot__copy {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}

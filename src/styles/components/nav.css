@@ -49,11 +49,11 @@
 }
 
 .nav__inner {
-  /* The panel has to stay translucent for the blur to read at all — at the
-     0.8 alpha this started with, there was nothing left to see through. */
-  background: rgba(17, 17, 17, 0.55);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  /* Frosted glass only reads if enough of the backdrop survives. At 0.55 the
+     hero's dot field was still almost entirely masked out. */
+  background: rgba(17, 17, 17, 0.34);
+  backdrop-filter: blur(22px) saturate(160%) brightness(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(160%) brightness(1.35);
   border-radius: var(--r-nav-inner);
   padding: 20px 22px;
   overflow: hidden;

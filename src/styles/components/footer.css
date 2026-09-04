@@ -18,12 +18,17 @@
   position: absolute;
   inset: 0;
   z-index: var(--z-base);
+
+  /* The lower half is where the contact card sits. The export veiled it to
+     0.915-0.955, which left the card with a flat black backdrop and nothing
+     for its blur to act on. Easing off below the wordmark lets the plate read
+     through the glass. */
   background: linear-gradient(
     180deg,
     rgba(17, 17, 17, 1) 0%,
     rgba(17, 17, 17, 0.985) 30%,
-    rgba(17, 17, 17, 0.955) 65%,
-    rgba(17, 17, 17, 0.915) 100%
+    rgba(17, 17, 17, 0.82) 65%,
+    rgba(17, 17, 17, 0.72) 100%
   );
   pointer-events: none;
 }
@@ -65,9 +70,9 @@
   z-index: var(--z-overlay);
   border: 1px solid var(--c-line);
   border-radius: var(--r-panel);
-  background: rgba(17, 17, 17, 0.45);
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  background: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(20px) saturate(145%) brightness(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(145%) brightness(1.1);
   padding: 2.4cqw 3.1cqw 1.6cqw 3.1cqw;
   display: flex;
   align-items: flex-start;

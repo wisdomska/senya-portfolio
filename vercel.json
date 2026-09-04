@@ -12,7 +12,17 @@
       "permanent": true
     },
     {
+      "source": "/Home.dc",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/Projects.dc.html",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/Projects.dc",
       "destination": "/projects",
       "permanent": true
     },
@@ -22,7 +32,17 @@
       "permanent": true
     },
     {
+      "source": "/Contact.dc",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
       "source": "/Case Study.dc.html",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/Case Study.dc",
       "destination": "/projects",
       "permanent": true
     },

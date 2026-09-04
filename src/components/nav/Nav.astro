@@ -1,0 +1,85 @@
+---
+import { NAV_LINKS } from '../../data/site';
+import CvButton from '../CvButton.astro';
+import logo from '../../assets/brand/logo.png';
+import { Image } from 'astro:assets';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__rule"></div>
+
+  <div class="nav__card">
+    <div class="nav__inner">
+      <div class="nav__bar">
+        <a href="/" aria-label="Senya — home">
+          <Image class="nav__logo" src={logo} alt="Senya" height={30} width={126} loading="eager" />
+        </a>
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Toggle menu"
+          data-nav-toggle
+        >
+          <svg class="nav__chevron" width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path
+              d="M4.2 6.8 L9 11.4 L13.8 6.8"
+              stroke="#ffffff"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="nav__panel" id="nav-panel" hidden>
+        {
+          NAV_LINKS.map((link) => (
+            <a
+              class="nav__link"
+              href={link.href}
+              aria-current={isCurrent(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+        <CvButton />
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const panel = document.getElementById('nav-panel');
+
+  if (toggle && panel) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Escape closes and returns focus to the control that opened it.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (toggle.getAttribute('aria-expanded') !== 'true') return;
+      if (!(e.target instanceof Node)) return;
+      if (!toggle.closest('.nav__card')?.contains(e.target)) setOpen(false);
+    });
+  }
+</script>

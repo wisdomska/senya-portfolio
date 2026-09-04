@@ -1,0 +1,143 @@
+/* Pill CTAs. Two treatments: filled with the brand gradient, and outlined
+   with a masked gradient hairline. */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  height: var(--control-h);
+  min-height: var(--tap-min);
+  padding: 0 35px;
+  border-radius: var(--r-pill);
+  color: var(--c-text);
+  font-size: var(--fs-nav);
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn__icon {
+  transform: rotate(0deg) scale(1);
+  transition: transform 360ms var(--ease-out-soft);
+}
+
+/* Filled — the primary action. */
+.btn--fill {
+  background: var(--grad-brand);
+  color: var(--c-bg);
+  transition:
+    box-shadow var(--t-base) ease,
+    transform var(--t-base) ease;
+}
+
+.btn--fill:hover {
+  box-shadow: 0 0.5cqw 1.6cqw rgba(203, 127, 254, 0.32);
+  transform: translateY(-1px);
+  color: var(--c-bg);
+}
+
+.btn--fill:hover .btn__icon {
+  transform: rotate(45deg) scale(1.06);
+}
+
+.btn--fill:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Outlined — secondary, gradient hairline via a masked ::before. */
+.btn--outline {
+  background: rgba(0, 0, 0, 0);
+  transition: background var(--t-base) ease;
+}
+
+.btn--outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-pill);
+  padding: 1.5px;
+  background: var(--grad-brand);
+  -webkit-mask: var(--mask-hairline);
+  mask: var(--mask-hairline);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.btn--outline:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--c-text);
+}
+
+.btn--outline:hover .btn__icon {
+  transform: rotate(45deg) scale(1.06);
+}
+
+/* The Download CV control, squared off on its right edge so it can sit flush
+   against the nav and footer panels. */
+.btn--cv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  height: var(--control-h-cta);
+  min-height: var(--tap-min);
+  white-space: nowrap;
+  border-radius: var(--r-cta);
+  background: rgba(0, 0, 0, 0);
+  color: var(--c-text);
+  font-size: var(--fs-nav);
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 220ms ease;
+  text-decoration: none;
+}
+
+.btn--cv:hover {
+  background: var(--grad-brand);
+  color: var(--c-text);
+}
+
+.btn--cv:hover .btn__icon {
+  transform: rotate(45deg) scale(1.06);
+}
+
+/* Circular social/icon control. */
+.icon-btn {
+  width: 4.15cqw;
+  height: 4.15cqw;
+  border-radius: 50%;
+  background: var(--grad-control), var(--c-surface-control);
+  box-shadow: var(--shadow-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    background var(--t-slow) ease,
+    box-shadow var(--t-slow) ease;
+}
+
+.icon-btn:hover {
+  background: var(--grad-control-hover), var(--c-surface-control-hover);
+  box-shadow: var(--shadow-control-hover);
+}
+
+.icon-btn img {
+  width: 1.8cqw;
+  height: 1.8cqw;
+  display: block;
+  transform: rotate(0deg) scale(1);
+  transition: transform var(--t-slow) var(--ease-out-soft);
+}
+
+.icon-btn:hover img {
+  transform: rotate(-7deg) scale(1.1);
+}

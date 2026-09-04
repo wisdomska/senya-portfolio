@@ -1,0 +1,11 @@
+---
+interface Props {
+  /** Rendered as authored — the display face's mixed casing is intentional. */
+  text: string;
+  id?: string;
+  as?: 'h1' | 'h2';
+}
+const { text, id, as: Tag = 'h2' } = Astro.props;
+---
+
+<Tag class="section-heading" id={id}>{text}</Tag>

@@ -1,0 +1,160 @@
+/* Floating top-right nav pill that expands into a dropdown. */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  z-index: var(--z-nav);
+  font-family: var(--font-sans);
+}
+
+/* The 2px rule that runs from the left edge to the pill. */
+.nav__rule {
+  position: relative;
+  z-index: var(--z-raised);
+  flex: 1 1 auto;
+  height: 2px;
+  background: var(--grad-rule);
+}
+
+.nav__card {
+  position: relative;
+  z-index: var(--z-raised);
+  flex: 0 0 auto;
+  width: 236px;
+  border-radius: var(--r-nav);
+  padding: 0 0 2px 2px;
+}
+
+/* Gradient hairline on the two visible edges of the pill. */
+.nav__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-nav);
+  padding: 0 0 2px 2px;
+  background: var(--grad-brand);
+  -webkit-mask: var(--mask-hairline);
+  mask: var(--mask-hairline);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.nav__inner {
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--r-nav-inner);
+  padding: 20px 22px;
+  overflow: hidden;
+}
+
+.nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nav__logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.nav__toggle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--grad-control), var(--c-surface-control);
+  box-shadow: var(--shadow-control);
+  color: var(--c-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background var(--t-slow) ease,
+    box-shadow var(--t-slow) ease;
+}
+
+/* Extends the hit area to the 44px floor without changing the visual size. */
+.nav__toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.nav__toggle:hover {
+  background: var(--grad-control-hover), var(--c-surface-control-hover);
+  box-shadow: var(--shadow-control-hover);
+}
+
+.nav__chevron {
+  transform: rotate(0deg) scale(1);
+  transition: transform 260ms ease;
+}
+
+.nav__toggle[aria-expanded='true'] .nav__chevron {
+  transform: rotate(180deg) scale(1);
+}
+
+.nav__toggle:hover .nav__chevron {
+  transform: rotate(-7deg) scale(1.1);
+}
+
+.nav__toggle[aria-expanded='true']:hover .nav__chevron {
+  transform: rotate(173deg) scale(1.1);
+}
+
+.nav__panel {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.nav__panel[hidden] {
+  display: none;
+}
+
+.nav__link {
+  margin: 0 0 0 -22px;
+  padding: 12px 7px 12px 0;
+  text-align: right;
+  color: var(--c-text);
+  font-size: var(--fs-nav);
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  border-right: 3px solid transparent;
+  transition: background var(--t-fast) ease;
+}
+
+.nav__link:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
+  color: var(--c-text);
+}
+
+.nav__link[aria-current='page'] {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%);
+  border-right: 3px solid var(--c-text);
+}
+
+.nav__cv {
+  position: relative;
+  margin: 16px 0 0 0;
+  border-radius: var(--r-cta);
+}

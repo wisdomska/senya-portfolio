@@ -1,0 +1,90 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { NAV_LINKS, SOCIALS } from '../data/site';
+import CvButton from './CvButton.astro';
+import logo from '../assets/brand/logo.png';
+import wordmark from '../assets/brand/wordmark.png';
+import statue from '../assets/brand/footer-statue.png';
+import footerBg from '../assets/brand/footer-bg.png';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+
+// The background plate is a CSS background, so it cannot go through <Image>.
+// Resolve it to an optimised WebP and reference that instead of the 4.5MB PNG.
+const bg = await getImage({ src: footerBg, format: 'webp', width: 1400, quality: 72 });
+
+const year = new Date().getFullYear();
+---
+
+<footer class="foot" style={`background-image: url('${bg.src}');`}>
+  <div class="foot__veil"></div>
+  <div class="foot__glow"></div>
+
+  <Image
+    class="foot__mark"
+    src={wordmark}
+    alt=""
+    widths={[768, 1024, 1440, 1920, 2560]}
+    sizes="98.6vw"
+    loading="lazy"
+    decoding="async"
+  />
+
+  <div class="foot__card">
+    <div class="foot__left">
+      <Image class="foot__logo" src={logo} alt="Senya" height={60} width={252} loading="lazy" />
+      <p class="foot__tagline">Reach out and let&rsquo;s create something great together!</p>
+
+      <div class="foot__socials">
+        {
+          SOCIALS.map((s) => (
+            <a
+              class="icon-btn"
+              href={s.href}
+              aria-label={s.label}
+              {...(s.href.startsWith('https://')
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+            >
+              <img src={`/icons/${s.icon}.svg`} alt="" width="24" height="24" loading="lazy" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="foot__right">
+      <p class="foot__links-title u-display">LINKS</p>
+      {
+        NAV_LINKS.map((link) => (
+          <a
+            class="foot__link"
+            href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <CvButton wrapperClass="foot__cv" padded />
+    </div>
+  </div>
+
+  <Image
+    class="foot__statue"
+    src={statue}
+    alt=""
+    widths={[480, 768, 1024, 1440]}
+    sizes="43vw"
+    loading="lazy"
+    decoding="async"
+    data-foot-statue
+  />
+
+  <p class="foot__copy">
+    <span>&copy; {year}</span>
+    <span class="foot__copy-sep" aria-hidden="true">|</span>
+    <span>All Rights Reserved</span>
+  </p>
+</footer>

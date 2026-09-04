@@ -1,0 +1,47 @@
+---
+import { SITE_NAME, SITE_URL, THEME_COLOR, abs } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Site-relative path to the 1200x630 share card. */
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  /** Set on the 404 page, which must never be indexed. */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og/default.png',
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', SITE_URL).href;
+const image = abs(ogImage);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta name="theme-color" content={THEME_COLOR} />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />

@@ -27,8 +27,16 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      # Not `npm ci`. sharp ships per-platform optional binaries, and npm
+      # omits the wasm32 subtree's own dependencies from a lockfile generated
+      # on Windows — which makes `npm ci` fail on the Linux runner. This still
+      # installs from the committed lockfile; --no-save keeps it unmodified, so
+      # a drifting lockfile cannot slip through unnoticed.
       - name: Install
-        run: npm ci
+        run: npm install --no-audit --no-fund --no-save
+
+      - name: Lockfile is unchanged by install
+        run: git diff --exit-code package-lock.json
 
       - name: Prettier
         run: npm run format:check

@@ -123,7 +123,7 @@ fights.
 
 ## Local setup
 
-Requires Node 20.11 or newer (`.nvmrc` pins it).
+Requires Node 22.12 or newer (`.nvmrc` pins it).
 
 ```bash
 npm install

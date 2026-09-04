@@ -5,7 +5,7 @@
   "description": "Senya's Portfolio — UI/UX & Graphic Designer, Accra, Ghana",
   "type": "module",
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",

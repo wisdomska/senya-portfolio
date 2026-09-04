@@ -1,0 +1,32 @@
+/* Contact page: the form band below the shared page-title hero. */
+
+.contact {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-bg);
+  container-type: inline-size;
+  font-family: var(--font-sans);
+}
+
+.contact__inner {
+  position: relative;
+  z-index: var(--z-raised);
+  padding: 3.96cqw 5.62cqw 8.5cqw 5.62cqw;
+  box-sizing: border-box;
+}
+
+.contact__heading {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(20px, 2.15cqw, 31px);
+  line-height: 1.05;
+  letter-spacing: -0.012em;
+  width: fit-content;
+  background: linear-gradient(90deg, #777777 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

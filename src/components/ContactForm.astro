@@ -1,0 +1,182 @@
+---
+import { COUNTRIES, DEFAULT_COUNTRY } from '../data/countries';
+import { OWNER_EMAIL, SITE_NAME } from '../data/site';
+
+/**
+ * Web3Forms access keys are publishable by design — they authorise "deliver a
+ * message to the bound inbox" and nothing more. It is read from an env var so
+ * it can be rotated without editing markup, not because it is secret.
+ */
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+---
+
+<form
+  class="form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  novalidate
+  data-contact-form
+  data-fallback-email={OWNER_EMAIL}
+>
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value={`New enquiry from ${SITE_NAME}`} />
+  <input type="hidden" name="from_name" value={SITE_NAME} />
+  <!-- Without JS, Web3Forms redirects here after a successful post. -->
+  <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+  <!-- Submitted as the full E.164 number; assembled by the script on submit. -->
+  <input type="hidden" name="phone" value="" data-phone-e164 />
+
+  <!-- Anti-spam: hidden from sight and from assistive technology. Web3Forms
+       drops any submission where `botcheck` is filled. -->
+  <div class="u-hidden" aria-hidden="true">
+    <label for="botcheck">Leave this field empty</label>
+    <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="cf-name">
+      NAME <span class="field__req" aria-hidden="true">*</span>
+    </label>
+    <input
+      class="field__input"
+      id="cf-name"
+      name="name"
+      type="text"
+      autocomplete="name"
+      placeholder="Enter your name"
+      required
+      aria-describedby="cf-name-error"
+    />
+    <p class="field__error" id="cf-name-error" data-error-for="cf-name"></p>
+  </div>
+
+  <div class="form__row">
+    <div class="field">
+      <label class="field__label" for="cf-email">
+        EMAIL ADDRESS <span class="field__req" aria-hidden="true">*</span>
+      </label>
+      <input
+        class="field__input"
+        id="cf-email"
+        name="email"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        placeholder="you@email.com"
+        required
+        aria-describedby="cf-email-error"
+      />
+      <p class="field__error" id="cf-email-error" data-error-for="cf-email"></p>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="cf-phone">PHONE</label>
+      <div class="phone" data-phone>
+        <button
+          class="phone__cc"
+          type="button"
+          aria-expanded="false"
+          aria-controls="cf-country-menu"
+          aria-label={`Country calling code, currently ${DEFAULT_COUNTRY.name} ${DEFAULT_COUNTRY.dial}`}
+          data-cc-toggle
+        >
+          <img
+            class="phone__flag"
+            src={`/flags/${DEFAULT_COUNTRY.code}.png`}
+            alt=""
+            width="26"
+            height="20"
+            data-cc-flag
+          />
+          <span data-cc-dial>{DEFAULT_COUNTRY.dial}</span>
+          <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path
+              d="M4.2 6.8 L9 11.4 L13.8 6.8"
+              stroke="#ffffff"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <input
+          class="field__input phone__input"
+          id="cf-phone"
+          name="phone_local"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel-national"
+          placeholder="24 000 0000"
+        />
+
+        <div class="phone__menu" id="cf-country-menu" hidden>
+          <div class="phone__search-wrap">
+            <label class="u-sr-only" for="cf-country-search">Search country or code</label>
+            <input
+              class="phone__search"
+              id="cf-country-search"
+              type="text"
+              placeholder="Search country or code"
+              autocomplete="off"
+              data-cc-search
+            />
+          </div>
+          <ul class="phone__list" data-cc-list>
+            {
+              COUNTRIES.map((c) => (
+                <li>
+                  <button
+                    class="phone__option"
+                    type="button"
+                    data-code={c.code}
+                    data-name={c.name}
+                    data-dial={c.dial}
+                  >
+                    <img src={`/flags/${c.code}.png`} alt="" width="22" height="17" loading="lazy" />
+                    <span class="phone__option-name">{c.name}</span>
+                    <span class="phone__option-dial">{c.dial}</span>
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="phone__empty" data-cc-empty hidden>No match.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="cf-message">
+      MESSAGE <span class="field__req" aria-hidden="true">*</span>
+    </label>
+    <textarea
+      class="field__textarea"
+      id="cf-message"
+      name="message"
+      placeholder="Tell me why you're reaching out..."
+      required
+      aria-describedby="cf-message-error"></textarea>
+    <p class="field__error" id="cf-message-error" data-error-for="cf-message"></p>
+  </div>
+
+  <div class="form__actions">
+    <button class="btn btn--fill" type="submit" data-submit>
+      <span data-submit-label>Send Message</span>
+      <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path
+          d="M17.5 2.5 L9 11 M17.5 2.5 L12 17.5 L9 11 L2.5 8 Z"
+          fill="#111111"
+          stroke="#111111"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+    <p class="form__status" role="status" aria-live="polite" data-status></p>
+  </div>
+</form>
+
+<script>
+  import '../scripts/contact-form';
+</script>

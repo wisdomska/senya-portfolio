@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE_NAME } from '../data/site';
+---
+
+<BaseLayout
+  title={`Contact — ${SITE_NAME}`}
+  description="Have a UI/UX, website or graphic design project in mind? Send Senya a message and start the conversation — based in Accra, working remotely worldwide."
+  ogImage="/og/contact.png"
+>
+  <PageHero title="CONTACT" subtitle="Have a project in mind? I'd love to hear about it." />
+
+  <section class="contact" aria-labelledby="contact-heading">
+    <div class="contact__inner">
+      <h2 class="contact__heading" id="contact-heading">LET&rsquo;S CREATE SOMETHING GREAT TOGETHER!</h2>
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../scripts/hero-video';
+</script>

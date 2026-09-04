@@ -6,8 +6,7 @@
  * from it, so moving to a custom domain is a one-line change here (or, better,
  * setting PUBLIC_SITE_URL in the Vercel dashboard and touching nothing at all).
  */
-export const SITE_URL =
-  import.meta.env.PUBLIC_SITE_URL ?? 'https://wisdomska.vercel.app';
+export const SITE_URL = import.meta.env.PUBLIC_SITE_URL ?? 'https://wisdomska.vercel.app';
 
 export const SITE_NAME = "Senya's Portfolio";
 export const SITE_SHORT_NAME = 'Senya';
@@ -27,7 +26,11 @@ export const CV_FILENAME = 'Wisdom-Agbetsiafa-CV.pdf';
 export const SOCIALS = [
   { label: 'Email', href: `mailto:${OWNER_EMAIL}`, icon: 'mail' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/wisdomska', icon: 'linkedin' },
-  { label: 'WhatsApp', href: `https://wa.me/${OWNER_PHONE_E164.replace('+', '')}`, icon: 'whatsapp' },
+  {
+    label: 'WhatsApp',
+    href: `https://wa.me/${OWNER_PHONE_E164.replace('+', '')}`,
+    icon: 'whatsapp',
+  },
   { label: 'Pinterest', href: 'https://www.pinterest.com/69senya', icon: 'pinterest' },
 ] as const;
 

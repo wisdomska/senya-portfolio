@@ -38,7 +38,7 @@ process:
 keyDecisions:
   - 'Payment methods matched to local habits — Mobile Money first'
   - 'Live map tracking paired with direct rider chat'
-  - 'Courier app shares the customer app''s design language'
+  - "Courier app shares the customer app's design language"
 solution: 'Customers set pickup and drop-off, choose a service and package type, pay by Mobile Money, card or in-app wallet, then track the rider live and message them directly. Couriers get order management and chat.'
 keyFeatures:
   - 'Booking flow'

@@ -1,7 +1,7 @@
 ---
 title: 'Foodtopia'
 displayTitle: 'FOODTOPIA'
-tagline: 'A restaurant''s own ordering app, without the platform fees.'
+tagline: "A restaurant's own ordering app, without the platform fees."
 cardTitle: 'Foodtopia - Food Ordering App'
 order: 13
 featured: false
@@ -25,8 +25,8 @@ tools:
   - 'Figma'
 cover:
   src: '../../assets/projects/work-foodtopia.png'
-  alt: 'Foodtopia — A restaurant''s own ordering app, without the platform fees'
-background: 'Phone orders are slow, customers can''t track delivery or keep loyalty benefits, and the restaurant pays high third-party fees while losing the customer relationship.'
+  alt: "Foodtopia — A restaurant's own ordering app, without the platform fees"
+background: "Phone orders are slow, customers can't track delivery or keep loyalty benefits, and the restaurant pays high third-party fees while losing the customer relationship."
 targetUsers:
   - 'Regular customers of a single restaurant, and the restaurant owner'
 goal: 'Give one restaurant a direct ordering channel it owns.'

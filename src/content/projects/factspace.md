@@ -1,7 +1,7 @@
 ---
 title: 'FactSpace Website Redesign'
 displayTitle: 'FACTSPACE WEBSITE REDESIGN'
-tagline: 'A credible home for West Africa''s fact-checkers.'
+tagline: "A credible home for West Africa's fact-checkers."
 cardTitle: 'FactSpace Global'
 order: 7
 featured: false
@@ -23,12 +23,12 @@ tools:
   - 'Figma'
 cover:
   src: '../../assets/projects/work-factspace.png'
-  alt: 'FactSpace Website Redesign — A credible home for West Africa''s fact-checkers'
-background: 'FactSpace West Africa was doing serious work across five countries, but its website didn''t show the credibility, editorial independence or reach behind it.'
+  alt: "FactSpace Website Redesign — A credible home for West Africa's fact-checkers"
+background: "FactSpace West Africa was doing serious work across five countries, but its website didn't show the credibility, editorial independence or reach behind it."
 targetUsers:
   - 'Readers across Ghana, Nigeria, Liberia, Sierra Leone and The Gambia'
   - 'partners and funders'
-goal: 'Make the organisation''s independence, IFCN verification and country coverage obvious at a glance.'
+goal: "Make the organisation's independence, IFCN verification and country coverage obvious at a glance."
 process:
   - 'Content audit'
   - 'IA'

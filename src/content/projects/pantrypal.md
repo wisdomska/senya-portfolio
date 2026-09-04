@@ -45,7 +45,7 @@ keyFeatures:
   - 'Shared recipe library'
   - 'Collaborative weekly planner'
   - 'Auto-generated shopping list'
-designSystemNotes: 'A single card pattern drives recipes, the weekly plan and the shopping list. Shared items are attributed by name and avatar together, so ownership isn''t signalled by colour alone.'
+designSystemNotes: "A single card pattern drives recipes, the weekly plan and the shopping list. Shared items are attributed by name and avatar together, so ownership isn't signalled by colour alone."
 outcome: 'A concept product built around collaboration rather than single-user task management.'
 byTheNumbers: '~40 screens covering a 3-part shared flow: recipes, plan, shopping list'
 whatILearned: 'Multi-user products need a clear owner for every shared object.'

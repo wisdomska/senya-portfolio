@@ -26,7 +26,7 @@ tools:
 cover:
   src: '../../assets/projects/work-connect.png'
   alt: 'Public Holiday Tracker — One calendar for a team split across three countries'
-background: 'AmaliTech teams in Ghana, Germany and Rwanda collaborate daily but can''t see each other''s public holidays, so meetings get scheduled on days off.'
+background: "AmaliTech teams in Ghana, Germany and Rwanda collaborate daily but can't see each other's public holidays, so meetings get scheduled on days off."
 targetUsers:
   - 'AmaliTech staff across the Ghana, Germany and Rwanda branches'
 goal: 'Make cross-border holidays visible before a meeting is booked.'

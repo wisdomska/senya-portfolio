@@ -24,7 +24,7 @@ tools:
 cover:
   src: '../../assets/projects/work-protz-v2.png'
   alt: 'Protz — On-demand towing and water delivery for Ghana'
-background: 'Towing and water delivery in Ghana run on informal networks. Customers can''t find verified providers, track a job, or pay securely. Providers have no tools to manage requests or earnings.'
+background: "Towing and water delivery in Ghana run on informal networks. Customers can't find verified providers, track a job, or pay securely. Providers have no tools to manage requests or earnings."
 targetUsers:
   - 'Ghanaian drivers and households'
   - 'independent towing and water-delivery operators'

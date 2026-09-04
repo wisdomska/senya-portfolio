@@ -72,7 +72,10 @@ body {
   background: var(--c-bg);
   color: var(--c-text);
   font-family: var(--font-sans);
-  overflow-x: clip;
+  /* No overflow-x here on purpose. The export set `hidden` on the root to
+     mask horizontal overflow; that also shrinks the containing block of the
+     fixed nav by the scrollbar width. Each band clips its own overflow
+     instead, so there is nothing left to mask. */
   max-width: 100%;
 }
 

@@ -14,7 +14,6 @@
   font-weight: 400;
   white-space: nowrap;
   cursor: pointer;
-  min-height: var(--tap-min);
   transition:
     background var(--t-slow) ease,
     color var(--t-slow) ease,

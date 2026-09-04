@@ -25,7 +25,9 @@
   position: relative;
   z-index: var(--z-raised);
   flex: 0 0 auto;
-  width: 236px;
+  /* 236px of card plus the 2px gradient edge. The export sized this with
+     content-box; stated as a border-box total it comes to the same pixels. */
+  width: 238px;
   border-radius: var(--r-nav);
   padding: 0 0 2px 2px;
 }

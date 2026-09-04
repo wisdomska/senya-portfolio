@@ -522,3 +522,9 @@
 .case__section {
   margin-top: 4.6cqw;
 }
+
+/* The last cell does not grow, so the strip's right edge is set by its
+   content rather than by an even share of the free space. */
+.case__meta-cell:last-child {
+  flex: 0 0 auto;
+}

@@ -39,9 +39,10 @@ svg {
   height: 26px;
 }
 
-button,
-a[role='button'],
-.btn {
+/* The export applied this floor to its pill CTAs only ([data-cta]); the
+   filter chips and carousel arrows carry their own sizes. */
+.btn,
+a[role='button'] {
   min-height: var(--tap-min);
 }
 

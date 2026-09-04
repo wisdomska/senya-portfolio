@@ -36,18 +36,20 @@
   background: var(--c-surface-input);
   color: var(--c-text);
   font-family: var(--font-sans);
-  /* 16px floor stops iOS Safari zooming the viewport on focus. */
-  font-size: max(16px, var(--fs-field));
+  /* Fields are a fixed 56px / 16px at every width. The export authored them
+     in cqw, then pinned them in its responsive layer; 56/16 is what actually
+     rendered. 16px is also the floor that stops iOS Safari zooming on focus. */
+  font-size: 16px;
   transition: border-color 200ms ease;
 }
 
 .field__input {
-  height: max(56px, 4.37cqw);
+  height: 56px;
   padding: 0 1.6cqw;
 }
 
 .field__textarea {
-  min-height: max(132px, 7.99cqw);
+  min-height: 132px;
   padding: 1.25cqw 1.6cqw;
   line-height: 1.4;
   resize: none;
@@ -105,14 +107,16 @@
   display: flex;
   align-items: center;
   gap: 0.5cqw;
-  height: max(56px, 4.37cqw);
+  height: 56px;
   padding: 0 0.9cqw;
   box-sizing: border-box;
   border: 1px solid var(--c-line);
   border-radius: var(--r-field);
   background: var(--c-surface-input);
   color: var(--c-text);
-  font-size: max(16px, var(--fs-field));
+  /* Not a form control in the export, so it kept the fluid step rather than
+     being pinned to 16px like the real inputs. */
+  font-size: var(--fs-field);
   cursor: pointer;
   white-space: nowrap;
 }
@@ -148,7 +152,7 @@
 .phone__menu {
   position: absolute;
   left: 0;
-  top: calc(max(56px, 4.37cqw) + 0.53cqw);
+  top: 4.9cqw;
   z-index: 20;
   width: min(24cqw, 92vw);
   min-width: 260px;
@@ -172,7 +176,7 @@
 
 .phone__search {
   width: 100%;
-  height: max(40px, 2.9cqw);
+  height: 56px;
   box-sizing: border-box;
   padding: 0 0.9cqw;
   border: none;
@@ -180,11 +184,11 @@
   background: var(--c-surface-raised);
   color: var(--c-text);
   font-family: var(--font-sans);
-  font-size: max(16px, var(--fs-label));
+  font-size: 16px;
 }
 
 .phone__list {
-  max-height: max(240px, 15cqw);
+  max-height: 15cqw;
   overflow-y: auto;
   padding: 0.42cqw 0;
   margin: 0;
@@ -197,9 +201,8 @@
   gap: 0.7cqw;
   width: 100%;
   padding: 0.62cqw 1.1cqw;
-  min-height: var(--tap-min);
   color: #e8e8e8;
-  font-size: max(16px, var(--fs-label));
+  font-size: 16px;
   text-align: left;
   cursor: pointer;
   transition: background 160ms ease;
@@ -236,7 +239,7 @@
 .phone__empty {
   padding: 0.9cqw 1.1cqw;
   color: #9a9a9a;
-  font-size: max(16px, var(--fs-label));
+  font-size: 16px;
 }
 
 .phone__empty[hidden] {

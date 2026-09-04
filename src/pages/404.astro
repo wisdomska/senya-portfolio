@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE_NAME } from '../data/site';
+---
+
+<BaseLayout
+  title={`Page not found — ${SITE_NAME}`}
+  description="That page doesn't exist. Head back to the homepage, browse the project archive, or get in touch — Senya, UI/UX and graphic designer in Accra, Ghana."
+  noindex
+>
+  <PageHero title="404" subtitle="This page went somewhere I can't follow." />
+
+  <section class="band notfound" aria-labelledby="notfound-heading">
+    <h2 class="u-sr-only" id="notfound-heading">Page not found</h2>
+    <p class="notfound__text">
+      The link is broken or the page has moved. Everything else is still where you left it.
+    </p>
+
+    <div class="notfound__actions">
+      <a class="btn btn--fill" href="/">
+        <span>Back home</span>
+        <svg class="btn__icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path
+            d="M5 13 L13 5 M6.5 5 H13 V11.5"
+            stroke="#111111"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+
+      <a class="btn btn--outline" href="/projects">
+        <span>See all projects</span>
+        <svg class="btn__icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path
+            d="M5 13 L13 5 M6.5 5 H13 V11.5"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../scripts/hero-video';
+</script>

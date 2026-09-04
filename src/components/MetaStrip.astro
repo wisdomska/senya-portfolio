@@ -1,0 +1,31 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+const { data } = Astro.props.project;
+
+/** Six fields, in the order the design shows them. */
+const CELLS: [string, string][] = [
+  ['Client', data.client],
+  ['Service Provided', data.service],
+  ['Duration', data.duration],
+  ['Year', data.year],
+  ['Tools', data.tools.join(', ')],
+  ['Platform', data.platform],
+];
+---
+
+<div class="case__meta">
+  <dl class="case__meta-row">
+    {
+      CELLS.map(([key, value]) => (
+        <div class="case__meta-cell">
+          <dt class="case__meta-key">{key}</dt>
+          <dd class="case__meta-val">{value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</div>

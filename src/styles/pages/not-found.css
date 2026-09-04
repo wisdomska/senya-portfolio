@@ -1,0 +1,22 @@
+/* 404 — reuses the page-title band, then a short recovery block. */
+
+.notfound {
+  padding: 6cqw var(--page-pad-x-right) 8cqw var(--page-pad-x);
+  box-sizing: border-box;
+}
+
+.notfound__text {
+  margin: 0;
+  max-width: 52cqw;
+  color: var(--c-text-muted);
+  font-size: var(--fs-body-lg);
+  line-height: 1.4;
+}
+
+.notfound__actions {
+  margin-top: 3cqw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2cqw;
+}

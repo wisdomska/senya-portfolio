@@ -1,0 +1,22 @@
+/* Six-field metadata strip at the top of a case study. */
+
+.meta-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2.2cqw;
+  margin: 0;
+}
+
+.meta-strip__label {
+  color: #7d7d7d;
+  font-size: clamp(14px, 0.97cqw, 14px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.meta-strip__value {
+  margin: 0.6cqw 0 0 0;
+  color: var(--c-text-strong);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}

@@ -1,0 +1,17 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import { getProjects, neighboursOf } from '../../data/projects';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project, next: neighboursOf(projects, project.id).next! },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project, next } = Astro.props;
+---
+
+<CaseStudyLayout project={project} next={next} />

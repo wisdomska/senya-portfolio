@@ -1,0 +1,9 @@
+dist
+.astro
+node_modules
+package-lock.json
+public/flags
+public/tools
+public/icons
+public/favicon.svg
+src/data/countries.ts

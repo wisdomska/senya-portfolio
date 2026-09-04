@@ -14,8 +14,8 @@ dist/
 .vercel/
 .lighthouseci/
 
-# generated share cards (rebuilt by `npm run og`)
-public/og/*.png
+# Generated share cards are committed — CI does not have the licensed font
+# originals needed to rebuild them. Regenerate locally with `npm run og`.
 
 # OS + editor noise
 .DS_Store
@@ -29,3 +29,6 @@ desktop.ini
 # Licensed font originals. The subset .woff2 files in public/fonts are
 # committed (they are what the site serves); the full desktop faces are not.
 src-fonts/
+
+# Local dev-server config for the Claude Code browser pane.
+.claude/

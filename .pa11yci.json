@@ -1,0 +1,18 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "chromeLaunchConfig": { "args": ["--no-sandbox", "--disable-dev-shm-usage"] },
+    "hideElements": "video",
+    "runners": ["axe", "htmlcs"]
+  },
+  "urls": [
+    "http://localhost:4321/",
+    "http://localhost:4321/projects",
+    "http://localhost:4321/contact",
+    "http://localhost:4321/404",
+    "http://localhost:4321/work/yenko-mobile",
+    "http://localhost:4321/work/clicks-creators",
+    "http://localhost:4321/work/protz"
+  ]
+}

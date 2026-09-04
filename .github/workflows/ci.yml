@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A newer push to the same branch cancels the older run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Lint, build and audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Prettier
+        run: npm run format:check
+
+      - name: ESLint
+        run: npm run lint:js
+
+      - name: Stylelint
+        run: npm run lint:css
+
+      - name: Astro type check
+        run: npm run check
+
+      # Astro warns rather than fails on unresolved content and images, so any
+      # warning in the build output is treated as broken content.
+      - name: Build
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee build.log
+          if grep -qiE '\[WARN\]|could not (be )?(find|resolve|optimize)' build.log; then
+            echo "::error::Build emitted warnings — see the log above."
+            exit 1
+          fi
+
+      - name: Validate HTML
+        run: npx html-validate "dist/**/*.html"
+
+      - name: Accessibility (axe + HTML CodeSniffer)
+        run: |
+          npx --yes serve dist -l 4321 --no-clipboard &
+          npx --yes wait-on http://localhost:4321 -t 60000
+          npx pa11y-ci --config .pa11yci.json
+
+      - name: Broken links
+        run: |
+          npx linkinator dist \
+            --recurse \
+            --silent \
+            --retry \
+            --timeout 20000 \
+            --skip "^https://www\.figma\.com" \
+            --skip "^https://wa\.me"
+
+      - name: Lighthouse CI
+        run: npx lhci autorun
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse
+          path: .lighthouseci
+          retention-days: 7
+          if-no-files-found: ignore

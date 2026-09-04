@@ -33,7 +33,15 @@ const year = new Date().getFullYear();
 
   <div class="foot__card">
     <div class="foot__left">
-      <Image class="foot__logo" src={logo} alt="Senya" height={60} width={252} loading="lazy" />
+      <Image
+        class="foot__logo"
+        src={logo}
+        alt="Senya"
+        height={60}
+        width={252}
+        densities={[1, 2]}
+        loading="lazy"
+      />
       <p class="foot__tagline">Reach out and let&rsquo;s create something great together!</p>
 
       <div class="foot__socials">

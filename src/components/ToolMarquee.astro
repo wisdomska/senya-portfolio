@@ -1,0 +1,42 @@
+---
+import { TOOLS } from '../data/tools';
+---
+
+<section class="marquee" aria-label="Tools I work with">
+  <div class="marquee__band">
+    <!-- The set is duplicated so the -50% keyframe loops seamlessly. The copy
+         is hidden from assistive technology to avoid reading it twice. -->
+    <div class="marquee__track">
+      <div class="marquee__set">
+        {
+          TOOLS.map((tool) => (
+            <img
+              class="marquee__logo"
+              src={`/tools/${tool}.svg`}
+              alt={tool}
+              width="40"
+              height="40"
+              loading="lazy"
+              decoding="async"
+            />
+          ))
+        }
+      </div>
+      <div class="marquee__set" aria-hidden="true">
+        {
+          TOOLS.map((tool) => (
+            <img
+              class="marquee__logo"
+              src={`/tools/${tool}.svg`}
+              alt=""
+              width="40"
+              height="40"
+              loading="lazy"
+              decoding="async"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

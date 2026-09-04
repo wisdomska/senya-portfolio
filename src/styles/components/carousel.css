@@ -1,0 +1,165 @@
+/* Hall of Fame carousel. The track is translated by a single custom property
+   so the transition is declared once and the script only sets a number. */
+
+@property --cert-x {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+:root {
+  transition: --cert-x 520ms var(--ease-out-soft);
+}
+
+.carousel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqw;
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75cqw;
+}
+
+.carousel__btn {
+  width: 3.3cqw;
+  height: 3.3cqw;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  border-radius: 50%;
+  background: var(--grad-control), var(--c-surface-control);
+  box-shadow: var(--shadow-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--t-slow) ease,
+    box-shadow var(--t-slow) ease;
+}
+
+.carousel__btn:hover {
+  background: var(--grad-control-hover), var(--c-surface-control-hover);
+  box-shadow: var(--shadow-control-hover);
+}
+
+.carousel__btn svg {
+  width: 18px;
+  height: 18px;
+  transform: rotate(0deg) scale(1);
+  transition: transform var(--t-slow) var(--ease-out-soft);
+}
+
+.carousel__btn:hover svg {
+  transform: rotate(-7deg) scale(1.1);
+}
+
+.carousel__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.carousel__viewport {
+  margin-top: 4.4cqw;
+  padding: 0.8cqw 0;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  gap: 1.6cqw;
+  will-change: translate;
+  translate: var(--cert-x, 0px);
+}
+
+.cert {
+  flex: 0 0 calc((100% - 4.8cqw) / 4);
+  min-width: 0;
+  position: relative;
+  border-radius: 1.1cqw;
+  /* 1px top padding lets the gradient beneath read as a hairline. */
+  padding: 1px 0 0 0;
+  background: linear-gradient(90deg, #777777 0%, #ffffff 100%);
+  transition:
+    transform 380ms var(--ease-out-soft),
+    background 380ms ease;
+}
+
+.cert:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(90deg, #cb7ffe 0%, #ff1043 100%);
+}
+
+.cert__inner {
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 1.1cqw;
+  padding: 1.8cqw 1.7cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9cqw;
+  background: linear-gradient(
+      150deg,
+      rgba(255, 255, 255, 0.045) 0%,
+      rgba(255, 255, 255, 0.01) 55%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    #141414;
+}
+
+.cert__row {
+  display: flex;
+  align-items: center;
+  gap: 0.62cqw;
+}
+
+.cert__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #cb7ffe 0%, #ff1043 100%);
+  flex: 0 0 auto;
+}
+
+.cert__type {
+  color: #7d7d7d;
+  font-size: clamp(14px, 0.97cqw, 14px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cert__issued {
+  margin-left: auto;
+  color: #7d7d7d;
+  font-size: clamp(14px, 0.97cqw, 14px);
+  white-space: nowrap;
+}
+
+.cert__name {
+  color: var(--c-text);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.cert__issuer {
+  margin-top: auto;
+  color: var(--c-text-dimmer);
+  font-size: var(--fs-label);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    transition: none;
+  }
+}
+
+/* Touch devices do not hold a hover state. */
+@media (hover: none), (pointer: coarse) {
+  .cert:hover {
+    transform: none;
+  }
+}

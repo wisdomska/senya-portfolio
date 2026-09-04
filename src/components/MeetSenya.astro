@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from './SectionHeading.astro';
+import portrait from '../assets/brand/meet-senya.png';
+
+/** The four floating skill chips, in their authored stacking order. */
+const TAGS = [
+  { label: 'Product Design', dotFirst: false },
+  { label: 'Website Design', dotFirst: true },
+  { label: 'Graphic Design', dotFirst: false },
+  { label: 'Web Development', dotFirst: true },
+];
+
+/** The double-quote glyph, verbatim from the export. */
+const QUOTE_PATH =
+  'M52.0243 35H44.8993C45.5743 37.55 47.4243 41.275 52.6243 42.575L54.5243 43.05V50H52.0243C45.0743 50 39.7493 48.075 36.2493 44.275C31.5243 39.15 31.9993 32.575 32.0243 32.5V15C32.0243 12.25 34.2743 10 37.0243 10H52.0243C54.7743 10 57.0243 12.25 57.0243 15V30C57.0243 32.75 54.7743 35 52.0243 35ZM22.0243 35H14.8993C15.5743 37.55 17.4243 41.275 22.6243 42.575L24.5243 43.05V50H22.0243C15.0743 50 9.74931 48.075 6.24931 44.275C1.52431 39.15 1.99931 32.575 2.02431 32.5V15C2.02431 12.25 4.27431 10 7.02431 10H22.0243C24.7743 10 27.0243 12.25 27.0243 15V30C27.0243 32.75 24.7743 35 22.0243 35Z';
+---
+
+<section class="meet" aria-labelledby="meet-heading">
+  <SectionHeading id="meet-heading" text="Meet Senya" />
+
+  <!-- display:contents at desktop, so the portrait and chips keep their
+       absolute placement against the section. Below 1024px this becomes a
+       real positioning context and the chips pin to the portrait instead. -->
+  <div class="meet__stage">
+    <Image
+      class="meet__portrait"
+      src={portrait}
+      alt="Senya"
+      widths={[480, 768, 1024]}
+      sizes="43vw"
+      loading="lazy"
+      decoding="async"
+      data-floater-trigger="selfie"
+    />
+
+    {
+      TAGS.map((tag, i) => (
+        <p class={`meet__tag meet__tag--${i + 1}`} data-parallax={i + 1}>
+          {tag.dotFirst && <span class="meet__tag-dot" aria-hidden="true" />}
+          <span>{tag.label}</span>
+          {!tag.dotFirst && <span class="meet__tag-dot" aria-hidden="true" />}
+        </p>
+      ))
+    }
+  </div>
+
+  <blockquote class="meet__card">
+    <svg class="meet__quote" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="quoteGrad" x1="2" y1="30" x2="57.0243" y2="30" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#888888"></stop>
+          <stop offset="1" stop-color="#ffffff"></stop>
+        </linearGradient>
+      </defs>
+      <path d={QUOTE_PATH} fill="url(#quoteGrad)"></path>
+    </svg>
+
+    <div class="meet__bio">
+      <p>
+        <b>I&rsquo;m Wisdom Senya</b>, a <b>UI/UX</b> and <b>Graphic Designer</b> with
+        <b>3+ years</b> of turning ideas into products people enjoy using.
+      </p>
+      <p>
+        <b>I have designed</b> and <b>built</b> user-centered websites, web applications and mobile
+        applications, creating <b>modern,</b> visually <b>striking interfaces</b> that make interactions
+        seamless and enjoyable.
+      </p>
+      <p>
+        <b>Work with me</b> so we <b>turn your dreams</b> and ideas into
+        <b>appealing and functional applications ;)</b>
+      </p>
+    </div>
+
+    <div class="meet__quote-foot">
+      <svg class="meet__quote meet__quote--close" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient
+            id="quoteGrad2"
+            x1="2"
+            y1="30"
+            x2="57.0243"
+            y2="30"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#888888"></stop>
+            <stop offset="1" stop-color="#ffffff"></stop>
+          </linearGradient>
+        </defs>
+        <path d={QUOTE_PATH} fill="url(#quoteGrad2)"></path>
+      </svg>
+    </div>
+  </blockquote>
+</section>

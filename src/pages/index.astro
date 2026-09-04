@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import MeetSenya from '../components/MeetSenya.astro';
+import ToolMarquee from '../components/ToolMarquee.astro';
+import CareerAccordion from '../components/CareerAccordion.astro';
+import CredentialCarousel from '../components/CredentialCarousel.astro';
+import { getFeatured } from '../data/projects';
+import {
+  SITE_NAME,
+  SITE_URL,
+  OWNER_NAME,
+  OWNER_ROLE,
+  OWNER_EMAIL,
+  SAME_AS,
+  abs,
+} from '../data/site';
+
+const featured = await getFeatured();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: OWNER_NAME,
+  alternateName: 'Senya',
+  jobTitle: OWNER_ROLE,
+  url: SITE_URL,
+  email: `mailto:${OWNER_EMAIL}`,
+  image: abs('/og/default.png'),
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Accra',
+    addressCountry: 'GH',
+  },
+  sameAs: SAME_AS,
+  knowsAbout: [
+    'UI/UX Design',
+    'Product Design',
+    'Graphic Design',
+    'Design Systems',
+    'Web Development',
+    'Accessibility',
+    'Prototyping',
+  ],
+};
+---
+
+<BaseLayout
+  title={`${SITE_NAME} — UI/UX & Graphic Designer`}
+  description="Senya is a UI/UX and graphic designer in Accra, Ghana, with 3+ years designing and building websites, web apps and mobile products people enjoy using."
+  ogImage="/og/home.png"
+  jsonLd={jsonLd}
+>
+  <Hero />
+
+  <section class="band featured" id="projects" aria-labelledby="featured-heading">
+    <div class="featured__head">
+      <SectionHeading id="featured-heading" text="feaTUrEd worKS" />
+
+      <div class="featured__cta-frame">
+        <a class="featured__cta" href="/projects">
+          <span>All Projects</span>
+          <svg class="btn__icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path
+              d="M5 13 L13 5 M6.5 5 H13 V11.5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="work-grid">
+      {
+        featured.map((project, i) => (
+          <ProjectCard project={project} variant="featured" eager={i < 2} />
+        ))
+      }
+    </div>
+  </section>
+
+  <MeetSenya />
+  <ToolMarquee />
+  <CareerAccordion />
+  <CredentialCarousel />
+
+  <!-- Cursor-following bubbles, positioned by script and hidden on touch. -->
+  <div class="floater" data-floater="greet" aria-hidden="true">
+    <span>&#128075;</span><span>Hello to you too</span>
+  </div>
+  <div class="floater floater--emoji" data-floater="selfie" aria-hidden="true">&#129331;</div>
+</BaseLayout>
+
+<script>
+  import '../scripts/hero-video';
+  import '../scripts/home';
+</script>

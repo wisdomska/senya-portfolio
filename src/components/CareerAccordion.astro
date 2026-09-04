@@ -1,0 +1,81 @@
+---
+import { CAREER } from '../data/career';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="band career" aria-labelledby="career-heading">
+  <SectionHeading id="career-heading" text="CArEEr" />
+
+  <div class="career__panel">
+    <div class="career__list">
+      {
+        CAREER.map((role, i) => (
+          <div class="role">
+            <span class="role__bar" aria-hidden="true" />
+
+            <button
+              class="role__head"
+              type="button"
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              aria-controls={`role-panel-${i}`}
+            >
+              <span class="role__range">{role.range}</span>
+              <span class="role__ident">
+                <span class="role__title">{role.role}</span>
+                <span class="role__org">{role.org}</span>
+              </span>
+              <span class="role__type">{role.type}</span>
+              <span class="role__knob">
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path
+                    d="M4 6.5 L9 11.5 L14 6.5"
+                    stroke="#d8d8d8"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+
+            <div class="role__reveal" id={`role-panel-${i}`}>
+              <div class="role__clip">
+                <div class="role__body">
+                  <p class="role__loc">{role.loc}</p>
+                  <div class="role__detail">
+                    <p class="role__one">{role.one}</p>
+                    {role.owned.map((item) => (
+                      <p class="role__owned">
+                        <span class="role__owned-dot" aria-hidden="true" />
+                        <span>{item}</span>
+                      </p>
+                    ))}
+                    {role.prog && <p class="role__prog">{role.prog}</p>}
+                    <ul class="role__skills">
+                      {role.skills.map((skill) => (
+                        <li class="role__skill">{skill}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // One row open at a time, matching the export's single-open accordion.
+  const heads = document.querySelectorAll<HTMLButtonElement>('.role__head');
+
+  for (const head of heads) {
+    head.addEventListener('click', () => {
+      const wasOpen = head.getAttribute('aria-expanded') === 'true';
+      for (const other of heads) other.setAttribute('aria-expanded', 'false');
+      head.setAttribute('aria-expanded', String(!wasOpen));
+    });
+  }
+</script>

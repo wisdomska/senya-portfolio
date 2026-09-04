@@ -1,0 +1,53 @@
+---
+/**
+ * Home hero: the reversed background loop, a vignette, and the wordmark
+ * lockup. "DesignEr" is drawn as a stroked SVG text knocked out by a mask of
+ * itself, which is what gives the outline its even weight at every size.
+ */
+---
+
+<section class="hero" id="hero">
+  <video
+    class="hero__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="none"
+    disableremoteplayback
+    aria-hidden="true"
+    tabindex="-1"
+    data-hero-video
+    data-rate="0.25"
+    data-src="/hero.mp4"></video>
+
+  <div class="hero__tint"></div>
+  <div class="hero__vignette"></div>
+
+  <div class="hero__content">
+    <p class="hero__greeting" data-floater-trigger="greet">
+      <span aria-hidden="true">&#128075;</span>
+      <span>Hi, I&rsquo;m Senya</span>
+    </p>
+
+    <h1 class="hero__title">UI/UX &amp; GRAPHIC</h1>
+
+    <div class="hero__outline">
+      <!-- No viewBox: the lockup is sized by CSS (width/height in cqw) and the
+           glyphs by a font-size clamp, exactly as the export authored it. -->
+      <svg role="img" aria-label="Designer">
+        <defs>
+          <mask id="desKnock" maskUnits="userSpaceOnUse" x="-60" y="-60" width="4000" height="600">
+            <rect x="-60" y="-60" width="4000" height="600" fill="#ffffff"></rect>
+            <text x="0" y="80%" fill="#000000">DesignEr</text>
+          </mask>
+        </defs>
+        <text x="0" y="80%" mask="url(#desKnock)" fill="none" stroke="#ffffff" stroke-width="6"
+          >DesignEr</text
+        >
+      </svg>
+    </div>
+
+    <p class="hero__kicker">...making complex things feel simple</p>
+  </div>
+</section>

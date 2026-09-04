@@ -1,0 +1,64 @@
+/* Tool-logo ticker: a rotated band with a duplicated track scrolling forever. */
+
+@keyframes senyaTicker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee {
+  position: relative;
+  width: 100%;
+  height: 16.2cqw;
+  min-height: 132px;
+  overflow: hidden;
+  background: var(--c-bg);
+  container-type: inline-size;
+}
+
+.marquee__band {
+  position: absolute;
+  left: -22%;
+  top: 50%;
+  width: 144%;
+  height: 8.33cqw;
+  margin-top: -4.16cqw;
+  background: linear-gradient(90deg, #191919 0%, #333333 100%);
+  transform: rotate(3.4deg);
+  display: flex;
+  align-items: center;
+}
+
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 5.8cqw;
+  width: max-content;
+  animation: senyaTicker 46s linear infinite;
+  will-change: transform;
+}
+
+.marquee__set {
+  display: flex;
+  align-items: center;
+  gap: 5.8cqw;
+}
+
+.marquee__logo {
+  height: 2.5cqw;
+  width: auto;
+  display: block;
+  flex: 0 0 auto;
+  max-width: none;
+  /* Counter-rotates the band so each logo sits level. */
+  transform: rotate(-3.4deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}

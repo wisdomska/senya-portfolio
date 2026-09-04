@@ -352,7 +352,7 @@ in Vercel, under **Project → Settings → Environment Variables**.
 | `PUBLIC_SITE_URL`      | Preview                          | leave unset                    | Preview builds inherit the production fallback; preview URLs are `noindex` by virtue of not being linked or in the sitemap.                                      |
 | `PUBLIC_SITE_URL`      | Development                      | leave unset                    | Falls back to the production URL.                                                                                                                                |
 | `PUBLIC_WEB3FORMS_KEY` | Production, Preview, Development | your Web3Forms access key      | **Public by design.** It authorises "deliver a message to the bound inbox" and nothing else. It lives in an env var so it can be rotated without editing markup. |
-| `ENABLE_ANALYTICS`     | Production                       | `1`                            | Emits the Vercel Web Analytics and Speed Insights tags. Only set it *after* both are enabled in the dashboard, or the scripts 404. See [Analytics](#analytics). |
+| `ENABLE_ANALYTICS`     | Production                       | `1`                            | Emits the Vercel Web Analytics and Speed Insights tags. Only set it _after_ both are enabled in the dashboard, or the scripts 404. See [Analytics](#analytics).  |
 
 Get a Web3Forms key free at <https://web3forms.com> — enter the destination
 email and it is sent to you. No account needed.

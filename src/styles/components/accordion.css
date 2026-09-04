@@ -129,7 +129,10 @@
   display: grid;
   grid-template-columns: 12cqw 1fr;
   gap: 2.4cqw;
-  padding: 0 1.6cqw 2.6cqw 2.2cqw;
+
+  /* Top padding separates the detail from the header row it expands out of;
+     the export ran them together. */
+  padding: 0.6cqw 1.6cqw 3.4cqw 2.2cqw;
   opacity: 0;
   transform: translateY(8px);
   transition:
@@ -171,11 +174,12 @@
 .role__detail {
   display: flex;
   flex-direction: column;
-  gap: 1.1cqw;
+  gap: 1.5cqw;
   max-width: 52cqw;
 }
 
 .role__one {
+  margin-bottom: 0.4cqw;
   color: #d6d6d6;
   font-size: clamp(16px, 1.25cqw, 18px);
   line-height: 1.5;
@@ -205,7 +209,7 @@
 }
 
 .role__prog {
-  margin-top: 0.4cqw;
+  margin-top: 0.9cqw;
   padding-left: 1.4cqw;
   background-image: linear-gradient(180deg, #ffffff 0%, #777777 100%);
   background-size: 2px 100%;
@@ -218,7 +222,7 @@
 }
 
 .role__skills {
-  margin-top: 0.5cqw;
+  margin-top: 1.2cqw;
   display: flex;
   flex-wrap: wrap;
   gap: 0.62cqw;

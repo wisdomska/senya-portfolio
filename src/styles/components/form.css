@@ -65,7 +65,16 @@
 
 .field__input:focus,
 .field__textarea:focus {
-  border-color: var(--c-accent);
+  border-color: var(--c-text);
+}
+
+/* The global focus ring is the magenta accent, which would sit on top of the
+   white border here. Form controls take a white ring instead. */
+.field__input:focus-visible,
+.field__textarea:focus-visible,
+.phone__cc:focus-visible,
+.phone__search:focus-visible {
+  outline-color: var(--c-text);
 }
 
 /* Only flag a field once the browser has actually validated it, so the form
@@ -126,7 +135,7 @@
 }
 
 .phone__cc[aria-expanded='true'] {
-  border-color: var(--c-accent);
+  border-color: var(--c-text);
 }
 
 .phone__flag {

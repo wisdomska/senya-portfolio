@@ -38,7 +38,7 @@
   align-items: center;
   gap: 5.8cqw;
   width: max-content;
-  animation: senyaTicker 46s linear infinite;
+  animation: senyaTicker 92s linear infinite;
   will-change: transform;
 }
 

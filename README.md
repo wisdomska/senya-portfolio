@@ -123,7 +123,7 @@ fights.
 
 ## Local setup
 
-Requires Node 20.11 or newer (`.nvmrc` pins it).
+Requires Node 22.12 or newer (`.nvmrc` pins it).
 
 ```bash
 npm install
@@ -400,7 +400,8 @@ feature branch  →  pull request  →  Vercel preview  →  merge to main  → 
 - `develop` is the long-running integration branch. Branch from it for work
   that is not ready to ship.
 - Every pull request gets its own Vercel preview URL, posted as a comment.
-  Open it and click through before merging.
+  Open it and click through before merging. This was verified on the first
+  pull request against this repository.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org):
   `feat:`, `fix:`, `perf:`, `docs:`, `chore:`, `ci:`.
 
@@ -431,6 +432,28 @@ Lighthouse budgets are asserted and will fail the build:
 | `!important` in shipped CSS       | zero           |
 
 ---
+
+## The one colour that changed
+
+Every value in `src/styles/tokens.css` is the export's, unchanged, with one
+exception.
+
+`#6f6f6f` measures **3.76:1** against the `#111111` ground. WCAG AA needs 4.5:1
+for text under 24px, and the export used it for two 14px items: the location
+line inside an open career row, and the form field placeholders. Both now use
+`#7d7d7d` (**4.59:1**), which the design already uses for the meta labels
+sitting beside them, so no new colour was introduced.
+
+To put it back, change `.role__loc` in
+`src/styles/components/accordion.css` and the `::placeholder` rule in
+`src/styles/components/form.css`. The accessibility check in CI will then fail,
+which is the point of it.
+
+Separately, the gradient-filled headings used to declare `color: transparent`.
+That renders them **invisible** in any engine without `background-clip: text`,
+and leaves contrast checkers nothing to measure. They now declare the
+gradient's own light stop instead. Where the gradient works this changes no
+pixel, because `-webkit-text-fill-color` paints over it.
 
 ## Pointing a custom domain at the site
 

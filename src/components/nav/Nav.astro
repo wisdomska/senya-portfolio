@@ -15,7 +15,15 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     <div class="nav__inner">
       <div class="nav__bar">
         <a href="/" aria-label="Senya — home">
-          <Image class="nav__logo" src={logo} alt="Senya" height={30} width={126} loading="eager" />
+          <Image
+            class="nav__logo"
+            src={logo}
+            alt="Senya"
+            height={30}
+            width={126}
+            densities={[1, 2, 3]}
+            loading="eager"
+          />
         </a>
         <button
           class="nav__toggle"

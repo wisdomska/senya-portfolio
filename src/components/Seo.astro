@@ -19,7 +19,19 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', SITE_URL).href;
+/**
+ * The build emits files (`/projects.html`) and Vercel serves them at clean
+ * URLs (`/projects`) via cleanUrls, so the path has to be normalised back
+ * before it becomes a canonical. Without this every canonical would advertise
+ * a `.html` URL that is not the address anyone links to.
+ */
+const cleanPath =
+  Astro.url.pathname
+    .replace(/index\.html$/, '')
+    .replace(/\.html$/, '')
+    .replace(/\/$/, '') || '/';
+
+const canonical = new URL(cleanPath, SITE_URL).href;
 const image = abs(ogImage);
 ---
 

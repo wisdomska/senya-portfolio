@@ -58,7 +58,9 @@
 
 .field__input::placeholder,
 .field__textarea::placeholder {
-  color: #6f6f6f;
+  /* Was #6f6f6f: 3.76:1, under AA. Every field also carries a visible
+     label, so the placeholder is a hint rather than the only cue. */
+  color: #7d7d7d;
 }
 
 .field__input:focus,

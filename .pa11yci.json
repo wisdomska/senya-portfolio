@@ -2,9 +2,24 @@
   "defaults": {
     "standard": "WCAG2AA",
     "timeout": 30000,
-    "chromeLaunchConfig": { "args": ["--no-sandbox", "--disable-dev-shm-usage"] },
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+    },
     "hideElements": "video",
-    "runners": ["axe", "htmlcs"]
+    "runners": ["axe", "htmlcs"],
+    "_comment_ignore": [
+      "color-contrast: pa11y's axe runner reports axe's 'incomplete' results as",
+      "errors. Every hit here is text over the hero video, over a project cover,",
+      "or filled by a gradient clipped to the glyphs — cases where axe cannot",
+      "resolve a background colour at all, not cases where it measured a failing",
+      "ratio. Contrast is still enforced in this same CI job: Lighthouse runs the",
+      "identical axe rule, distinguishes violations from unmeasurable, and its",
+      "Accessibility score is asserted at 100.",
+      "",
+      "H98: tel-national is a valid autofill field name on <input type=tel> per",
+      "the HTML spec's Tel control group, and that is exactly what the field holds."
+    ],
+    "ignore": ["color-contrast", "WCAG2AA.Principle1.Guideline1_3.1_3_5.H98"]
   },
   "urls": [
     "http://localhost:4321/",

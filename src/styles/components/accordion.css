@@ -160,7 +160,9 @@
 }
 
 .role__loc {
-  color: #6f6f6f;
+  /* Was #6f6f6f in the export: 3.76:1, under AA for 14px. #7d7d7d is 4.59:1
+     and is already the colour of the sibling meta labels in this row. */
+  color: #7d7d7d;
   font-size: clamp(14px, 0.97cqw, 14px);
   letter-spacing: 0.1em;
   text-transform: uppercase;

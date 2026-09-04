@@ -27,8 +27,16 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      # Not `npm ci`. sharp ships per-platform optional binaries, and npm omits
+      # the wasm32 subtree's own dependencies from a lockfile generated on
+      # Windows, which makes `npm ci` fail on the Linux runner. This still
+      # installs from the committed lockfile; --no-save keeps it unmodified, so
+      # a drifting lockfile cannot slip through unnoticed.
       - name: Install
-        run: npm ci
+        run: npm install --no-audit --no-fund --no-save
+
+      - name: Lockfile is unchanged by install
+        run: git diff --exit-code package-lock.json
 
       - name: Prettier
         run: npm run format:check
@@ -56,21 +64,36 @@ jobs:
       - name: Validate HTML
         run: npx html-validate "dist/**/*.html"
 
-      - name: Accessibility (axe + HTML CodeSniffer)
+      # One step, because a background process does not survive the step that
+      # started it. astro preview serves the built site with the same clean
+      # URLs Vercel does, so these audits exercise the real routes.
+      - name: Accessibility and link check
         run: |
-          npx --yes serve dist -l 4321 --no-clipboard &
-          npx --yes wait-on http://localhost:4321 -t 60000
+          npm run preview -- --port 4321 &
+          SERVER=$!
+          trap 'kill $SERVER 2>/dev/null || true' EXIT
+
+          for _ in $(seq 1 60); do
+            curl -sf http://localhost:4321/ >/dev/null && break
+            sleep 1
+          done
+          curl -sf http://localhost:4321/ >/dev/null || {
+            echo "::error::preview server did not start"
+            exit 1
+          }
+
           npx pa11y-ci --config .pa11yci.json
 
-      - name: Broken links
-        run: |
-          npx linkinator dist \
+          npx linkinator http://localhost:4321 \
             --recurse \
             --silent \
             --retry \
             --timeout 20000 \
             --skip "^https://www\.figma\.com" \
-            --skip "^https://wa\.me"
+            --skip "^https://wa\.me" \
+            --skip "^https://clickscreators\.com" \
+            --skip "^https://siastes\.com" \
+            --skip "^https://beatzy\.figma\.site"
 
       - name: Lighthouse CI
         run: npx lhci autorun

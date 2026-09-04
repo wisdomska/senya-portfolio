@@ -311,6 +311,36 @@ The subset takes the seven faces from 673KB to 82.5KB. It also prints the
 
 ---
 
+## The hero video
+
+`public/hero.mp4` is the background loop behind the hero and the two page
+titles. The master from the Claude Design export was 2.49MB, 1280x720, with a
+128 kb/s audio track that never plays because the element is always muted.
+
+It ships re-encoded to **1.0MB**, audio stripped:
+
+```bash
+ffmpeg -i hero-master.mp4 -an   -c:v libx264 -profile:v high -crf 32 -preset veryslow   -pix_fmt yuv420p -movflags +faststart   public/hero.mp4
+```
+
+The loop renders at 15% opacity beneath a vignette, so the quality loss is not
+visible: measured against the master, the mean per-pixel difference as
+rendered is 0.55/255, about 0.2%.
+
+It is still the single heaviest thing on the site, so it is:
+
+- attached from `data-src` only when the element nears the viewport, so it
+  never blocks first paint or the LCP;
+- skipped entirely for `prefers-reduced-motion`, Data Saver and 2g
+  connections — the hero keeps its tint, vignette and type either way.
+
+**Trade-off worth knowing.** Without the video the home page transfers about
+220KB. With it, about 1.25MB, which is over the 1MB budget. Dropping to
+`-crf 34` would take the file to 818KB and the page to roughly 1.04MB at a
+rendered difference of 0.64/255. Replacing the loop with a still frame would
+put the page near 260KB. Both are your call — the site currently keeps the
+motion the design was built around.
+
 ## Environment variables
 
 Copy `.env.example` to `.env` for local work. Both variables also need setting

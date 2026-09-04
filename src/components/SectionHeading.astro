@@ -1,7 +1,7 @@
 ---
 interface Props {
   /** Rendered as authored — the display face's mixed casing is intentional. */
-  text: string;
+  text?: string;
   id?: string;
   as?: 'h1' | 'h2';
   /** Extra classes, for sections that place their heading themselves. */
@@ -10,4 +10,4 @@ interface Props {
 const { text, id, as: Tag = 'h2', class: className } = Astro.props;
 ---
 
-<Tag class:list={['section-heading', className]} id={id}>{text}</Tag>
+<Tag class:list={['section-heading', className]} id={id}><slot>{text}</slot></Tag>

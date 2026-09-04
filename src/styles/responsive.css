@@ -587,7 +587,10 @@ h3,
     flex-basis: 100%;
   }
 
-  /* Display headings wrap rather than run off the edge. */
+  /* Display headings wrap rather than run off the edge. Their line heights
+     are set for a single line at desktop — 1 for the display face, 0.86 for
+     the page titles — which collides once they wrap, so each gets leading
+     back only where it actually breaks. */
   .section-heading,
   .page-hero__title,
   .case__title,
@@ -596,6 +599,40 @@ h3,
     max-width: 100%;
     overflow-wrap: break-word;
     text-wrap: balance;
+  }
+
+  .section-heading {
+    line-height: 1.18;
+  }
+
+  .page-hero__title {
+    line-height: 0.98;
+  }
+
+  .case__title {
+    line-height: 1.02;
+  }
+
+  .contact__heading {
+    line-height: 1.18;
+  }
+
+  /* "feaTUrEd worKS" becomes "worKS", and the pill beside it hugs its label
+     and sits right, so the two share one row. */
+  .featured__heading-lead,
+  .featured__cta-long {
+    display: none;
+  }
+
+  .featured__cta-short {
+    display: inline;
+  }
+
+  /* "worKS" plus the pill is still wider than the column, so the pill takes
+     its own row and stays right-aligned there rather than overflowing. */
+  .featured__head {
+    flex-wrap: wrap;
+    gap: 1.25rem 1rem;
   }
 
   .case__meta-cell {
@@ -615,9 +652,14 @@ h3,
     width: 100%;
   }
 
-  .featured__cta-frame,
+  .featured__cta-frame {
+    width: fit-content;
+    margin-left: auto;
+  }
+
   .featured__cta {
-    width: 100%;
+    width: fit-content;
+    padding: 0 22px;
   }
 
   /* Back, top left of the case study. */

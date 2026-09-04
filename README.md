@@ -132,17 +132,18 @@ npm run dev
 
 The dev server runs at <http://localhost:4321>.
 
-| Command           | What it does                                     |
-| ----------------- | ------------------------------------------------ |
-| `npm run dev`     | Dev server with hot reload.                      |
-| `npm run build`   | Production build into `dist/`.                   |
-| `npm run preview` | Serve the built `dist/` locally.                 |
-| `npm run lint`    | Prettier check, ESLint, Stylelint.               |
-| `npm run format`  | Rewrite files with Prettier.                     |
-| `npm run check`   | Astro/TypeScript type check.                     |
-| `npm run og`      | Regenerate the share cards (needs `src-fonts/`). |
-| `npm run fonts`   | Re-subset the fonts (needs `src-fonts/`).        |
-| `npm run icons`   | Rebuild the favicon set from the brand mark.     |
+| Command           | What it does                                           |
+| ----------------- | ------------------------------------------------------ |
+| `npm run dev`     | Dev server with hot reload.                            |
+| `npm run build`   | Production build into `dist/`.                         |
+| `npm run preview` | Serve the built `dist/` locally.                       |
+| `npm run lint`    | Prettier check, ESLint, Stylelint.                     |
+| `npm run format`  | Rewrite files with Prettier.                           |
+| `npm run check`   | Astro/TypeScript type check.                           |
+| `npm run verify`  | Check invariants in the built CSS (run after `build`). |
+| `npm run og`      | Regenerate the share cards (needs `src-fonts/`).       |
+| `npm run fonts`   | Re-subset the fonts (needs `src-fonts/`).              |
+| `npm run icons`   | Rebuild the favicon set from the brand mark.           |
 
 ---
 
@@ -371,6 +372,32 @@ Vercel builds and deploys on every push. Nothing is deployed by hand.
 - **Build command:** `npm run build`. **Output:** `dist`.
 - Headers, redirects, caching and the Content-Security-Policy all live in
   `vercel.json`.
+
+### Redeploying by hand
+
+Sometimes production has to be rebuilt without a new commit — after changing a
+build-time environment variable, for instance. **`vercel redeploy` rebuilds the
+source of the deployment you name and then aliases it to production**, so
+naming the wrong one silently reverts the live site to that commit.
+
+`vercel ls` does not reliably list newest-first. Confirm the commit before
+redeploying anything:
+
+```bash
+curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
+  "https://api.vercel.com/v6/deployments?app=wisdomska&target=production&limit=5" \
+  | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{for(const x of JSON.parse(d).deployments)console.log(new Date(x.created).toISOString(), x.uid, (x.meta?.githubCommitSha||'-').slice(0,7))})"
+```
+
+Then check the result against `git rev-parse main`. After any manual deploy,
+confirm what actually shipped rather than trusting the command — the fastest
+check is a marker that only exists in recent work:
+
+```bash
+curl -s https://wisdomska.vercel.app/ | grep -o '/_assets/[^"]*\.css'
+```
+
+and grep that stylesheet for something the newest commit introduced.
 
 ### Analytics
 

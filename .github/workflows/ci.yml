@@ -61,6 +61,12 @@ jobs:
             exit 1
           fi
 
+      # Checks the CSS that actually ships, not the source. The bundler has
+      # previously dropped one half of a vendor-prefix pair, which no source
+      # lint and no getComputedStyle check in Chromium can see.
+      - name: Verify build output
+        run: npm run verify
+
       - name: Validate HTML
         run: npx html-validate "dist/**/*.html"
 

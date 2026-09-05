@@ -359,7 +359,7 @@ email and it is sent to you. No account needed.
 **Testing the form with an automated browser.** The free plan accepts requests
 only from a real browser, and it decides that from the user agent. A
 server-side POST is answered with `Use our API in client side`, and a request
-whose UA contains `HeadlessChrome` is rejected *with no CORS header at all* —
+whose UA contains `HeadlessChrome` is rejected _with no CORS header at all_ —
 so the browser reports nothing but `TypeError: Failed to fetch`. Set a normal
 Chrome user agent (`page.setUserAgent(...)` in Puppeteer) before submitting, or
 you will be debugging the harness rather than the site.

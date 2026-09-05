@@ -40,6 +40,16 @@
   transform: scale(1.1);
 }
 
+/* Touch devices reveal the colour on tap instead of on hover, just before the
+   link opens; see src/scripts/card-reveal.ts. The fade is much shorter than
+   the hover one, which would still be mid-way when the page changed. Colour
+   only — the hover zoom stays a pointer affordance, so the tapped card is not
+   left cropped under the finger. */
+.card.is-revealed .card__cover img {
+  filter: grayscale(0);
+  transition: filter 200ms ease;
+}
+
 .card__meta {
   margin-top: 1.6cqw;
   display: flex;

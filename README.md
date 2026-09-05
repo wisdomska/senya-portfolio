@@ -353,6 +353,7 @@ in Vercel, under **Project → Settings → Environment Variables**.
 | `PUBLIC_SITE_URL`      | Preview                          | leave unset                    | Preview builds inherit the production fallback; preview URLs are `noindex` by virtue of not being linked or in the sitemap.                                      |
 | `PUBLIC_SITE_URL`      | Development                      | leave unset                    | Falls back to the production URL.                                                                                                                                |
 | `PUBLIC_WEB3FORMS_KEY` | Production, Preview, Development | your Web3Forms access key      | **Public by design.** It authorises "deliver a message to the bound inbox" and nothing else. It lives in an env var so it can be rotated without editing markup. |
+| `ENABLE_ANALYTICS`     | Production                       | `1`                            | Emits the Vercel Web Analytics and Speed Insights tags. Only set it _after_ both are enabled in the dashboard, or the scripts 404. See [Analytics](#analytics).  |
 
 Get a Web3Forms key free at <https://web3forms.com> — enter the destination
 email and it is sent to you. No account needed.
@@ -406,7 +407,20 @@ dashboard (Analytics tab → Enable). Both are cookieless and collect no persona
 data, so the site needs no consent banner.
 
 They are injected **in production only** — `src/components/Analytics.astro`
-checks `VERCEL_ENV`, so preview deploys and local development report nothing.
+requires both `VERCEL_ENV === 'production'` and `ENABLE_ANALYTICS === '1'`, so
+preview deploys and local development report nothing.
+
+Turning them on takes two steps, and both are already done:
+
+1. Enable Web Analytics and Speed Insights in the dashboard. This is what makes
+   Vercel serve `/_vercel/insights/script.js` and
+   `/_vercel/speed-insights/script.js` from this origin.
+2. Set `ENABLE_ANALYTICS=1` for Production, then redeploy. The flag exists so
+   the tags are never emitted before step 1 — without it they would 404 on
+   every page load and log a console error.
+
+Both scripts are same-origin, so the existing `script-src 'self'` and
+`connect-src 'self'` in the CSP already cover them and the beacon.
 
 On the Hobby plan Web Analytics is free with a monthly event cap and about a
 month of retention, which is comfortably enough for a portfolio. If you ever

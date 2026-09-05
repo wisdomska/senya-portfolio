@@ -220,7 +220,11 @@ if (form) {
 
       form.reset();
       setStatus('Thanks — your message is on its way.', 'success');
-    } catch {
+    } catch (error) {
+      // The visitor sees a plain message, but the cause goes to the console.
+      // A network-level rejection surfaces only as "Failed to fetch", so
+      // without this the real reason is invisible when debugging a report.
+      console.error('Contact form submission failed:', error);
       // The typed message is untouched, so the visitor can retry or copy it.
       setStatus(`Couldn't send. Please email ${fallbackEmail} directly.`, 'error');
     } finally {

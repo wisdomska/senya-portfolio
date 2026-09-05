@@ -40,6 +40,13 @@
   transform: scale(1.1);
 }
 
+/* Touch devices reveal the colour on the first tap instead of on hover; see
+   src/scripts/card-reveal.ts. Colour only — the hover zoom stays a pointer
+   affordance, so the tapped card is not left cropped under the finger. */
+.card.is-revealed .card__cover img {
+  filter: grayscale(0);
+}
+
 .card__meta {
   margin-top: 1.6cqw;
   display: flex;
